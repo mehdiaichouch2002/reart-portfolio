@@ -204,7 +204,7 @@ const Contact = () => {
       </div>
       {(showSuccessMessage || showErrorMessage) && successMessage}
       {isLoading && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center">
+        <div className="fixed inset-0 flex items-center justify-center">
           <div className="fixed inset-0 bg-gray-400 opacity-50"></div>
           <div className="absolute z-50 flex items-center justify-center">
             <div
