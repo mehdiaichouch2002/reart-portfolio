@@ -1,19 +1,22 @@
 import React from "react";
 import AnitaImg from "../assets/projects/anita.png";
 import CarharttImg from "../assets/projects/carhartt.png";
+import FreespaceImg from "../assets/projects/freespace.png";
 import EdwwinImg from "../assets/projects/edwin.png";
+import PortfolioImg from "../assets/projects/portfolio.jpg";
+import RequestifyImg from "../assets/projects/requestify.png";
 
 const Portfolio = () => {
   const portfolios = [
     {
       id: 1,
-      src: CarharttImg,
+      src: FreespaceImg,
       href: "https://github.com/mehdiaichouch2002/Freespace",
       title: "Freespace",
     },
     {
       id: 2,
-      src: CarharttImg,
+      src: RequestifyImg,
       href: "https://github.com/mehdiaichouch2002/Requestify",
       title: "Requestify",
     },
@@ -37,7 +40,7 @@ const Portfolio = () => {
     },
     {
       id: 6,
-      src: CarharttImg,
+      src: PortfolioImg,
       href: "https://edwin-europe.com",
       title: "Portfolio",
     },
@@ -66,7 +69,7 @@ const Portfolio = () => {
               <img
                 src={src}
                 alt={title}
-                className="rounded-t-lg object-contain h-48 w-full bg-white"
+                className="rounded-t-lg object-cover h-48 w-full bg-white"
               />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-cyan-400 text-center">
