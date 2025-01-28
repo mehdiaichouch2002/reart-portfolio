@@ -10,7 +10,7 @@ const NavBar = () => {
     { id: 2, link: "about" },
     { id: 3, link: "portfolio" },
     { id: 4, link: "skills" },
-    { id: 5, link: "contact" },
+    { id: 5, link: "new section" },
   ];
 
   return (
@@ -42,7 +42,7 @@ const NavBar = () => {
         role="button"
         tabIndex={0}
       >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+        {!nav && <FaBars size={30} />}
       </div>
 
       {/* Mobile Menu */}
@@ -53,7 +53,7 @@ const NavBar = () => {
         onClick={() => setNav(false)}
       ></div>
     <ul
-  className={`fixed top-0 left-0 w-3/4 h-full bg-gradient-to-b from-gray-900 to-gray-800 shadow-lg z-50 transform transition-transform duration-500 ease-in-out ${
+  className={`fixed top-0 md:hidden left-0 w-3/4 h-full bg-gradient-to-b from-gray-900 to-gray-800 shadow-lg z-50 transform transition-transform duration-500 ease-in-out ${
     nav ? "translate-x-0" : "-translate-x-full"
   }`}
 >
@@ -89,8 +89,8 @@ const NavBar = () => {
     </div>
 
     {/* Footer Section */}
-    <div className="flex items-center justify-center pb-8 text-gray-500 text-sm">
-      <p>© 2024 Mehdi | All Rights Reserved</p>
+    <div className="flex items-center justify-center pb-4 text-gray-500 text-sm">
+      <p>© {new Date().getFullYear()} Mehdi | All Rights Reserved</p>
     </div>
   </div>
 </ul>
