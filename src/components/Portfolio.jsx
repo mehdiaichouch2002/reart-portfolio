@@ -13,36 +13,42 @@ const Portfolio = () => {
       src: FreespaceImg,
       href: "https://github.com/mehdiaichouch2002/Freespace",
       title: "Freespace",
+      hosted : false
     },
     {
       id: 2,
       src: RequestifyImg,
       href: "https://github.com/mehdiaichouch2002/Requestify",
       title: "Requestify",
+      hosted : false
     },
     {
       id: 3,
       src: CarharttImg,
       href: "https://b2b.carhartt-wip.com",
       title: "B2B Carhartt WIP",
+      hosted : true
     },
     {
       id: 4,
       src: AnitaImg,
       href: "https://www.anita.com",
       title: "Anita",
+      hosted : true
     },
     {
       id: 5,
       src: EdwwinImg,
       href: "https://edwin-europe.com",
       title: "Edwin",
+      hosted : true
     },
     {
       id: 6,
       src: PortfolioImg,
-      href: "https://edwin-europe.com",
+      href: "https://github.com/mehdiaichouch2002/reart-portfolio",
       title: "Portfolio",
+      hosted : true
     },
   ];
 
@@ -61,7 +67,7 @@ const Portfolio = () => {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 sm:px-0">
-          {portfolios.map(({ id, src, href, title }) => (
+          {portfolios.map(({ id, src, href, title, hosted }) => (
             <div
               key={id}
               className="rounded-lg transform hover:scale-105 duration-300 bg-gray-900 shadow-lg"
@@ -83,7 +89,7 @@ const Portfolio = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  View Code
+                  { hosted ? "View in Live" : "View Code"}
                 </a>
               </div>
             </div>
