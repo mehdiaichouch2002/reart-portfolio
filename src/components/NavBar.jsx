@@ -15,40 +15,45 @@ const NavBar = () => {
   useEffect(() => {
     if (nav) {
       const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
+      document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
+      document.body.style.width = "100%";
     } else {
       const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
 
     return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     };
   }, [nav]);
 
   return (
-    <nav className="z-50 flex justify-between items-center w-full text-white h-20 fixed bg-black px-4 lg:px-8">
+    <nav className="z-50 flex justify-between items-center w-full text-white h-20 fixed bg-gradient-to-r from-gray-900 to-gray-800 px-4 lg:px-8 shadow-lg">
       {/* Logo */}
       <div>
-        <h1 className="text-4xl font-signature cursor-pointer">Mehdi</h1>
+        <h1 className="text-4xl font-signature cursor-pointer bg-gradient-to-r py-1 from-cyan-500 to-white bg-clip-text text-transparent bg-[length:200%_100%] hover:bg-[position:100%_50%] transition-all duration-500">
+          Mehdi
+        </h1>
       </div>
 
       {/* Desktop Links */}
-      <ul className="hidden md:flex space-x-6">
+      <ul className="hidden md:flex space-x-8">
         {links.map(({ id, link }) => (
-          <li
-            key={id}
-            className="capitalize font-medium text-gray-400 hover:text-white hover:scale-105 transition-transform"
-          >
-            <Link to={link} smooth duration={500} className="cursor-pointer">
+          <li key={id} className="relative group">
+            <Link
+              to={link}
+              smooth
+              duration={500}
+              className="capitalize font-medium text-gray-400 hover:text-white transition-colors duration-300 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+            >
               {link}
+              <span className="absolute left-0 bottom-0 h-0.5 bg-white w-0 group-hover:w-full transition-all duration-300 ease-in-out"></span>
             </Link>
           </li>
         ))}
@@ -57,7 +62,7 @@ const NavBar = () => {
       {/* Hamburger Icon */}
       <div
         onClick={() => setNav(!nav)}
-        className="cursor-pointer p-2 z-10 text-gray-400 md:hidden"
+        className="cursor-pointer p-2 z-10 text-gray-400 md:hidden hover:text-white transition-colors duration-300"
         aria-expanded={nav}
         role="button"
         tabIndex={0}
