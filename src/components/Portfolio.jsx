@@ -65,7 +65,7 @@ const Portfolio = () => {
       src: PortfolioImg,
       href: "https://github.com/mehdiaichouch2002/reart-portfolio",
       title: "Portfolio",
-      hosted: true,
+      hosted: false,
       category: "personal",
       description: "Personal portfolio website",
       tech: ["React", "Tailwind"],
@@ -80,7 +80,7 @@ const Portfolio = () => {
   return (
     <div
       name="portfolio"
-      className="min-h-screen bg-gradient-to-b from-black to-gray-800 py-16"
+      className="bg-gradient-to-b from-black to-gray-800 py-16"
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-5">
