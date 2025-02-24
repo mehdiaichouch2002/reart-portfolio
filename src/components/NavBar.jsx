@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
+import { Home, User, Code, Briefcase } from "lucide-react";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
 
   const links = [
-    { id: 1, link: "home" },
-    { id: 2, link: "about" },
-    { id: 3, link: "portfolio" },
-    { id: 4, link: "skills" },
+    { id: 1, link: "home", icon: Home },
+    { id: 2, link: "about", icon: User },
+    { id: 3, link: "portfolio", icon: Code },
+    { id: 4, link: "skills", icon: Briefcase },
   ];
 
   useEffect(() => {
@@ -83,8 +84,16 @@ const NavBar = () => {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Close Button */}
-          <div className="flex justify-end p-4">
+          {/* Header with Logo and Close Button */}
+          <div className="flex items-center justify-between p-4 w-full">
+            {/* Logo */}
+            <div>
+              <h1 className="text-4xl font-signature pt-2 cursor-pointer bg-gradient-to-r from-cyan-500 to-white bg-clip-text text-transparent bg-[length:200%_100%] hover:bg-[position:100%_50%] transition-all duration-500">
+                Mehdi
+              </h1>
+            </div>
+
+            {/* Close Button */}
             <button
               onClick={() => setNav(false)}
               className="text-gray-400 hover:text-white transition duration-300"
@@ -92,22 +101,24 @@ const NavBar = () => {
               <FaTimes size={25} />
             </button>
           </div>
-
-          {/* Navigation Links */}
-          <div className="flex flex-col items-start justify-center flex-grow space-y-6">
-            {links.map(({ id, link }) => (
+          <div className="flex flex-col items-start justify-center flex-grow space-y-2">
+            {links.map(({ id, link, icon: Icon }) => (
               <li
                 key={id}
-                className="w-full text-left capitalize font-medium text-gray-300 hover:text-white hover:bg-gray-700 px-6 py-4 rounded-r-lg transition duration-300 ease-in-out"
+                className="w-full group hover:bg-gray-700/50 rounded-lg transition-all duration-300"
               >
                 <Link
                   to={link}
                   smooth
                   duration={500}
                   onClick={() => setNav(false)}
-                  className="block"
+                  className="flex items-center gap-4 px-6 py-4 text-gray-300 hover:text-white transition-colors duration-300"
                 >
-                  {link}
+                  <Icon
+                    size={20}
+                    className="text-gray-400 group-hover:text-white transition-colors duration-300"
+                  />
+                  <span className="font-medium capitalize">{link}</span>
                 </Link>
               </li>
             ))}
