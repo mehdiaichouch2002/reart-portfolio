@@ -128,14 +128,14 @@ const Portfolio = () => {
         {/* Desktop hover overlay - hidden on mobile */}
         <div className="hidden md:flex absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 items-center justify-center">
           <div className="opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <afterEach
+            <a
               href={project.href}
               target="_blank"
               rel="noreferrer"
               className="bg-cyan-500 text-white px-6 py-2 rounded-full hover:bg-cyan-600 transition-all"
             >
               {project.hosted ? "View Live" : "View Code"}
-            </afterEach>
+            </a>
           </div>
         </div>
       </div>
