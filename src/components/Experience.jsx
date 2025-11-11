@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import html from "../assets/technologies/html.png";
 import css from "../assets/technologies/css.png";
+import c from "../assets/technologies/c++.png";
 import magento from "../assets/technologies/magento.png";
 import js from "../assets/technologies/js.png";
 import tailwind from "../assets/technologies/tailwind.png";
@@ -153,6 +154,13 @@ const Experience = () => {
       title: "MongoDB",
       style: "shadow-green-500",
       documentation: "https://www.mongodb.com/docs" 
+    },
+    {
+      id: 14,
+      src: c,
+      title: "C++",
+      style: "shadow-blue-300",
+      documentation: "https://devdocs.io/cpp" 
     },
   ];
 

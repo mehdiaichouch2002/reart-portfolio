@@ -34,6 +34,12 @@ const TimelineItem = ({ title, date, description, index, isLeft }) => (
 
 const About = () => {
   const timelineEvents = [
+     {
+      title: "ENSA Fès — Bachelor's in Web Frameworks & Java EE",
+      date: "2025-2026 (In Progress)",
+      description: "Pursuing a comprehensive degree focusing on advanced web frameworks, Java Enterprise Edition (JEE), and large-scale system development.",
+      type: "right"
+    },
     {
       title: "Morocommerce, FES — Magento Developer",
       date: "Dec 2023 - PRESENT",
