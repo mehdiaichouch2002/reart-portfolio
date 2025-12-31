@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImg from "../assets/portfolio/me.png";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-scroll";
 
 const Home = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <div
       name="home"
@@ -36,10 +38,17 @@ const Home = () => {
           </div>
         </div>
         <div className="mt-8 md:mt-0 flex justify-center">
+          {!imageLoaded && (
+            <div className="rounded-2xl w-1/2 md:w-2/3 md:max-w-lg aspect-square bg-gray-700 animate-pulse" />
+          )}
+          
           <img
             src={heroImg}
             alt="my profile"
-            className="rounded-2xl w-1/2 md:w-2/3 md:h-auto md:max-w-lg"
+            className={`rounded-2xl w-1/2 md:w-2/3 md:h-auto md:max-w-lg transition-opacity duration-500 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0 absolute'
+            }`}
+            onLoad={() => setImageLoaded(true)}
           />
         </div>
       </div>
