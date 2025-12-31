@@ -16,6 +16,7 @@ import linux from "../assets/technologies/linux.png";
 import php from "../assets/technologies/php.png";
 import reactjs from "../assets/technologies/reactjs.png";
 import bootstrap from "../assets/technologies/bootstrap.png";
+import python from "../assets/technologies/python.png";
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -61,7 +62,6 @@ const PrevArrow = ({ onClick }) => (
   </button>
 );
 
-
 const Experience = () => {
   const techs = [
     {
@@ -69,98 +69,106 @@ const Experience = () => {
       src: html,
       title: "HTML",
       style: "shadow-orange-500",
-      documentation: "https://developer.mozilla.org/en-US/docs/Web/HTML" 
+      documentation: "https://developer.mozilla.org/en-US/docs/Web/HTML",
     },
     {
       id: 2,
       src: css,
       title: "CSS",
       style: "shadow-blue-500",
-      documentation: "https://developer.mozilla.org/en-US/docs/Web/CSS" 
+      documentation: "https://developer.mozilla.org/en-US/docs/Web/CSS",
     },
     {
       id: 3,
       src: js,
       title: "Javascript",
       style: "shadow-yellow-500",
-      documentation: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" 
+      documentation: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     },
     {
       id: 4,
       src: reactjs,
       title: "React",
       style: "shadow-blue-600",
-      documentation: "https://reactjs.org/docs/getting-started.html" 
+      documentation: "https://reactjs.org/docs/getting-started.html",
     },
     {
       id: 5,
       src: tailwind,
       title: "Tailwind",
       style: "shadow-sky-400",
-      documentation: "https://tailwindcss.com/docs" 
+      documentation: "https://tailwindcss.com/docs",
     },
     {
       id: 6,
       src: magento,
       title: "Magento 2",
       style: "shadow-orange-400",
-      documentation: "https://devdocs.magento.com/" 
+      documentation: "https://devdocs.magento.com/",
     },
     {
       id: 7,
       src: github,
       title: "Github",
       style: "shadow-gray-400",
-      documentation: "https://docs.github.com/" 
+      documentation: "https://docs.github.com/",
     },
     {
       id: 8,
       src: php,
       title: "PHP",
       style: "shadow-indigo-600",
-      documentation: "https://www.php.net/manual/" 
+      documentation: "https://www.php.net/manual/",
     },
     {
       id: 9,
       src: bootstrap,
       title: "Bootstrap",
       style: "shadow-purple-500",
-      documentation: "https://getbootstrap.com/docs/5.3/getting-started/introduction/" 
+      documentation:
+        "https://getbootstrap.com/docs/5.3/getting-started/introduction/",
     },
     {
       id: 10,
       src: linux,
       title: "Linux",
       style: "shadow-gray-400",
-      documentation: "https://www.kernel.org/doc/" 
+      documentation: "https://www.kernel.org/doc/",
     },
     {
       id: 11,
       src: laravel,
       title: "Laravel",
       style: "shadow-red-500",
-      documentation: "https://laravel.com/docs" 
+      documentation: "https://laravel.com/docs",
     },
     {
       id: 12,
       src: gitlab,
       title: "Gitlab",
       style: "shadow-orange-500",
-      documentation: "https://docs.gitlab.com/" 
+      documentation: "https://docs.gitlab.com/",
     },
     {
       id: 13,
       src: mongodb,
       title: "MongoDB",
       style: "shadow-green-500",
-      documentation: "https://www.mongodb.com/docs" 
+      documentation: "https://www.mongodb.com/docs",
     },
     {
       id: 14,
       src: c,
       title: "C++",
       style: "shadow-blue-300",
-      documentation: "https://devdocs.io/cpp" 
+      documentation: "https://devdocs.io/cpp",
+    },
+    {
+      id: 15,
+      src: python,
+      title: "Python",
+      style: "shadow-yellow-400",
+      documentation: "https://docs.python.org/3/",
     },
   ];
 
@@ -216,7 +224,7 @@ const Experience = () => {
       name="skills"
       className="bg-gradient-to-b from-gray-800 to-black w-full text-white"
     >
-    <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
+      <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
         <div className="pb-8 text-center">
           <p className="text-4xl font-extrabold inline border-b-4 border-cyan-500">
             Skills
@@ -224,7 +232,7 @@ const Experience = () => {
           <p className="py-6">These are the technologies I've worked with</p>
         </div>
 
-        <Slider   {...settings}>
+        <Slider {...settings}>
           {techs.map(({ id, src, title, style, documentation }) => (
             <div
               key={id}
@@ -232,18 +240,20 @@ const Experience = () => {
                 "py-2 rounded-lg flex flex-col justify-center items-center"
               }
             >
-              <a href={documentation}
-               target="_blank"
-               rel="noreferrer"
-               >
-                  <img
-                src={src}
-                alt={title}
-                className="w-20 h-40 mx-auto mb-2 object-contain cursor-pointer duration-200 hover:scale-125"
-              />
-             
+              <a href={documentation} target="_blank" rel="noreferrer">
+                <img
+                  src={src}
+                  alt={title}
+                  className="w-20 h-40 mx-auto mb-2 object-contain cursor-pointer duration-200 hover:scale-125"
+                />
               </a>
-             <p className={"text-center pb-2 font-bold mt-auto shadow-md mx-5 " + style}>{title}</p>
+              <p
+                className={
+                  "text-center pb-2 font-bold mt-auto shadow-md mx-5 " + style
+                }
+              >
+                {title}
+              </p>
             </div>
           ))}
         </Slider>

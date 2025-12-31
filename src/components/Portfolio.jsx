@@ -5,6 +5,7 @@ import FreespaceImg from "../assets/projects/freespace.png";
 import EdwwinImg from "../assets/projects/edwin.png";
 import PortfolioImg from "../assets/projects/portfolio.jpg";
 import RequestifyImg from "../assets/projects/requestify.png";
+import SlackBotImg from "../assets/projects/slackbot.png";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
@@ -70,6 +71,17 @@ const Portfolio = () => {
       description: "Personal portfolio website",
       tech: ["React", "Tailwind"],
     },
+    {
+      id: 7,
+      src: SlackBotImg,
+      href: "https://github.com/mehdiaichouch2002/Daily-Meeting-Host-Python-Slack-bot",
+      title: "Daily Meeting Host Slack Bot",
+      hosted: false,
+      category: "opensource",
+      description:
+        "Python Slack bot that automatically hosts and manages daily stand-up meetings.",
+      tech: ["Python", "Slack API"],
+    },
   ];
 
   const filteredPortfolios =
@@ -114,63 +126,65 @@ const Portfolio = () => {
 
         {/* Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-  {filteredPortfolios.map((project) => (
-    <div 
-      key={project.id}
-      className="bg-gray-800 rounded-xl overflow-hidden md:transform md:hover:scale-105 transition-all duration-300 shadow-xl"
-    >
-      <div className="relative group bg-white">
-        <img
-          src={project.src}
-          alt={project.title}
-          className="w-full h-48 object-cover"
-        />
-        {/* Desktop hover overlay - hidden on mobile */}
-        <div className="hidden md:flex absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 items-center justify-center">
-          <div className="opacity-0 group-hover:opacity-100 transition-all duration-300">
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-cyan-500 text-white px-6 py-2 rounded-full hover:bg-cyan-600 transition-all"
+          {filteredPortfolios.map((project) => (
+            <div
+              key={project.id}
+              className="bg-gray-800 rounded-xl overflow-hidden md:transform md:hover:scale-105 transition-all duration-300 shadow-xl"
             >
-              {project.hosted ? "View Live" : "View Code"}
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-        <p className="text-gray-400 mb-4">{project.description}</p>
-        
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tech, index) => (
-            <span 
-              key={index}
-              className="px-3 py-1 bg-gray-700 text-cyan-400 rounded-full text-sm"
-            >
-              {tech}
-            </span>
+              <div className="relative group bg-white">
+                <img
+                  src={project.src}
+                  alt={project.title}
+                  className="w-full h-48 object-cover"
+                />
+                {/* Desktop hover overlay - hidden on mobile */}
+                <div className="hidden md:flex absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bg-cyan-500 text-white px-6 py-2 rounded-full hover:bg-cyan-600 transition-all"
+                    >
+                      {project.hosted ? "View Live" : "View Code"}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 mb-4">{project.description}</p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-gray-700 text-cyan-400 rounded-full text-sm"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Mobile View Button */}
+                <div className="block lg:hidden mt-4 text-center">
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full inline-block text-center bg-cyan-500 text-white px-6 py-2.5 rounded-full hover:bg-cyan-600 transition-all font-medium"
+                  >
+                    {project.hosted ? "View Live" : "View Code"}
+                  </a>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
-        
-        {/* Mobile View Button */}
-        <div className="block lg:hidden mt-4 text-center">
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noreferrer"
-            className="w-full inline-block text-center bg-cyan-500 text-white px-6 py-2.5 rounded-full hover:bg-cyan-600 transition-all font-medium"
-          >
-            {project.hosted ? "View Live" : "View Code"}
-          </a>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
       </div>
     </div>
   );
