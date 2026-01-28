@@ -6,6 +6,7 @@ import EdwwinImg from "../assets/projects/edwin.png";
 import PortfolioImg from "../assets/projects/portfolio.jpg";
 import RequestifyImg from "../assets/projects/requestify.png";
 import SlackBotImg from "../assets/projects/slackbot.png";
+import LibraryImg from "../assets/projects/library.png";
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
@@ -81,6 +82,16 @@ const Portfolio = () => {
       description:
         "Python Slack bot that automatically hosts and manages daily stand-up meetings.",
       tech: ["Python", "Slack API"],
+    },
+    {
+      id: 8,
+      src: LibraryImg,
+      href: "https://github.com/mehdiaichouch2002/library-system",
+      title: "Library Management System",
+      hosted: false,
+      category: "opensource",
+      description: "Dockerized system with book cataloging, user auth, and automated borrowing workflows.",
+      tech: ["PHP", "MySQL", "Nginx", "Docker"],
     },
   ];
 

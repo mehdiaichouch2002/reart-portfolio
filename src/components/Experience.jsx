@@ -17,6 +17,8 @@ import php from "../assets/technologies/php.png";
 import reactjs from "../assets/technologies/reactjs.png";
 import bootstrap from "../assets/technologies/bootstrap.png";
 import python from "../assets/technologies/python.png";
+import java from "../assets/technologies/java.png";
+import docker from "../assets/technologies/docker.png";
 
 const NextArrow = ({ onClick }) => (
   <button
@@ -170,6 +172,20 @@ const Experience = () => {
       style: "shadow-yellow-400",
       documentation: "https://docs.python.org/3/",
     },
+    {
+      id: 16,
+      src: java,
+      title: "Java",
+      style: "shadow-red-500",
+      documentation: "https://docs.oracle.com/javase/8/docs/",
+    },
+    {
+      id: 17,
+      src: docker,
+      title: "Docker",
+      style: "shadow-sky-500",
+      documentation: "https://docs.docker.com/",
+    }
   ];
 
   const settings = {
