@@ -4,12 +4,12 @@ import { FaFile } from 'react-icons/fa';
 const ResumeLanguageModal = ({ isOpen, onClose }) => {
   const handleDownload = (language) => {
     const resumeUrl = language === 'en' 
-      ? '/Mehdi-Aichouch-EN.pdf' 
-      : '/Mehdi-Aichouch-FR.pdf';
+      ? '/MEHDI-AICHOUCH-EN.pdf' 
+      : '/MEHDI-AICHOUCH-FR.pdf';
     
     const link = document.createElement('a');
     link.href = resumeUrl;
-    link.download = `Mehdi-Aichouch-${language.toUpperCase()}.pdf`;
+    link.download = `MEHDI-AICHOUCH-${language.toUpperCase()}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
