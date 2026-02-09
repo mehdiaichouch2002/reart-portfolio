@@ -53,6 +53,7 @@ const NavBar = () => {
                 smooth
                 duration={500}
                 spy
+                offset={-80}
                 onSetActive={() => setActiveSection(link)}
                 className={`capitalize font-medium transition-colors duration-300 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-1 ${
                   activeSection === link
