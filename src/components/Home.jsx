@@ -51,12 +51,12 @@ const Home = () => {
           className="mt-8 md:mt-0 flex justify-center"
         >
           {!imageLoaded && (
-            <div className="rounded-2xl w-1/2 md:w-2/3 md:max-w-lg aspect-square bg-gray-700 animate-pulse" />
+            <div className="rounded-2xl w-2/3 sm:w-1/2 md:w-2/3 md:max-w-lg aspect-square bg-gray-700 animate-pulse" />
           )}
           <img
             src={heroImg}
             alt="my profile"
-            className={`rounded-2xl w-1/2 md:w-2/3 md:h-auto md:max-w-lg transition-opacity duration-500 ${
+            className={`rounded-2xl w-2/3 sm:w-1/2 md:w-2/3 md:h-auto md:max-w-lg transition-opacity duration-500 ${
               imageLoaded ? "opacity-100" : "opacity-0 absolute"
             }`}
             onLoad={() => setImageLoaded(true)}

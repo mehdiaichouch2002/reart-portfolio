@@ -2,28 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
 import navLinks from "../data/navLinks";
+import useScrolled from "../hooks/useScrolled";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const scrolled = useScrolled(20);
 
   const closeNav = useCallback(() => setNav(false), []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (nav) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+    document.body.classList.toggle("overflow-hidden", nav);
     return () => document.body.classList.remove("overflow-hidden");
   }, [nav]);
 
