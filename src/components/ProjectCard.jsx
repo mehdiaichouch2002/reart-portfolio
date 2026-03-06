@@ -22,7 +22,7 @@ const ProjectCard = ({ project }) => (
             rel="noreferrer"
             className="bg-cyan-500 text-white px-6 py-2 rounded-full hover:bg-cyan-600 transition-all"
           >
-            {project.hosted ? "View Live" : "View Code"}
+            {project.viewLabel}
           </a>
         </div>
       </div>
@@ -50,7 +50,7 @@ const ProjectCard = ({ project }) => (
           rel="noreferrer"
           className="w-full inline-block text-center bg-cyan-500 text-white px-6 py-2.5 rounded-full hover:bg-cyan-600 transition-all font-medium"
         >
-          {project.hosted ? "View Live" : "View Code"}
+          {project.viewLabel}
         </a>
       </div>
     </div>

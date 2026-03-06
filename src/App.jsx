@@ -7,23 +7,26 @@ import Contact from "./components/Contact";
 import SocialLinks from "./components/SocialLinks";
 import Footer from "./components/Footer";
 import { ResumeModalProvider } from "./context/ResumeModalContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import ResumeLanguageModal from "./components/common/ResumeLanguageModal";
 
 function App() {
   return (
-    <ResumeModalProvider>
-      <div className="select-none">
-        <NavBar />
-        <Home />
-        <About />
-        <Portfolio />
-        <Skills />
-        <Contact />
-        <SocialLinks />
-        <Footer />
-      </div>
-      <ResumeLanguageModal />
-    </ResumeModalProvider>
+    <LanguageProvider>
+      <ResumeModalProvider>
+        <div className="select-none">
+          <NavBar />
+          <Home />
+          <About />
+          <Portfolio />
+          <Skills />
+          <Contact />
+          <SocialLinks />
+          <Footer />
+        </div>
+        <ResumeLanguageModal />
+      </ResumeModalProvider>
+    </LanguageProvider>
   );
 }
 

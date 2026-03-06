@@ -1,9 +1,11 @@
 import React from "react";
 import { FaFile } from "react-icons/fa";
 import { useResumeModal } from "../../context/ResumeModalContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 const ResumeLanguageModal = () => {
   const { isOpen, close } = useResumeModal();
+  const { t } = useLanguage();
 
   const handleDownload = (language) => {
     const resumeUrl =
@@ -33,11 +35,9 @@ const ResumeLanguageModal = () => {
             <FaFile size={32} className="text-cyan-400" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-2">
-            Choose Resume Language
+            {t("resumeModal.title")}
           </h2>
-          <p className="text-gray-400">
-            Select your preferred language to download my resume
-          </p>
+          <p className="text-gray-400">{t("resumeModal.subtitle")}</p>
         </div>
 
         <div className="space-y-3">
@@ -46,7 +46,7 @@ const ResumeLanguageModal = () => {
             className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/50 flex items-center justify-center space-x-3 border border-cyan-400/20"
           >
             <span className="text-2xl">🇬🇧</span>
-            <span>English Version</span>
+            <span>{t("resumeModal.english")}</span>
           </button>
 
           <button
@@ -54,7 +54,7 @@ const ResumeLanguageModal = () => {
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 flex items-center justify-center space-x-3 border border-purple-400/20"
           >
             <span className="text-2xl">🇫🇷</span>
-            <span>Version Française</span>
+            <span>{t("resumeModal.french")}</span>
           </button>
         </div>
 
@@ -62,7 +62,7 @@ const ResumeLanguageModal = () => {
           onClick={close}
           className="w-full mt-4 text-gray-400 hover:text-white font-medium py-2 transition-all duration-300 hover:bg-gray-800/50 rounded-lg"
         >
-          Cancel
+          {t("resumeModal.cancel")}
         </button>
       </div>
     </div>

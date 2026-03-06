@@ -1,6 +1,6 @@
 import React from "react";
 
-const Notification = ({ type, onClose }) => (
+const Notification = ({ type, onClose, successMsg, errorMsg }) => (
   <div
     className={`fixed top-20 left-0 right-0 mx-auto max-w-md z-50 transform transition-all duration-500 ease-in-out ${
       type ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
@@ -12,9 +12,7 @@ const Notification = ({ type, onClose }) => (
       }`}
     >
       <span className="font-medium">
-        {type === "success"
-          ? "Mail sent successfully!"
-          : "Error submitting form. Please try again."}
+        {type === "success" ? successMsg : errorMsg}
       </span>
       <button
         onClick={onClose}

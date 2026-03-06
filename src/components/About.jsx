@@ -1,9 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import timelineEvents from "../data/timeline";
 import TimelineItem from "./TimelineItem";
+import { useLanguage } from "../context/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  const timelineEvents = t("timeline");
+
   return (
     <section
       name="about"
@@ -18,7 +21,7 @@ const About = () => {
           className="text-center mb-12"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pb-2 border-b-2 border-cyan-400">
-            About Me
+            {t("about.title")}
           </h2>
         </motion.div>
 

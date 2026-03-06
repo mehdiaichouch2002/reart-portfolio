@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import technologies from "../data/technologies";
 import { NextArrow, PrevArrow } from "./SliderArrows";
+import { useLanguage } from "../context/LanguageContext";
 
 const SLIDER_SETTINGS = {
   dots: false,
@@ -36,7 +37,9 @@ const SLIDER_SETTINGS = {
   ],
 };
 
-const Skills = () => (
+const Skills = () => {
+  const { t } = useLanguage();
+  return (
   <div
     name="skills"
     className="bg-gradient-to-b from-gray-800 to-black w-full py-20 text-white"
@@ -44,10 +47,10 @@ const Skills = () => (
     <div className="max-w-screen-lg p-4 mx-auto flex flex-col justify-center w-full h-full">
       <div className="pb-8 text-center">
         <p className="text-4xl font-extrabold inline border-b-4 border-cyan-500">
-          Skills
+          {t("skills.title")}
         </p>
         <p className="py-6 text-gray-400">
-          These are the technologies I've worked with
+          {t("skills.description")}
         </p>
       </div>
 
@@ -72,6 +75,7 @@ const Skills = () => (
       </Slider>
     </div>
   </div>
-);
+  );
+};
 
 export default Skills;

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import projects from "../data/projects";
 import ProjectCard from "./ProjectCard";
+import { useLanguage } from "../context/LanguageContext";
 
 const CATEGORIES = ["all", "commercial", "opensource", "personal"];
 
 const Portfolio = () => {
   const [filter, setFilter] = useState("all");
+  const { t } = useLanguage();
 
   const filteredPortfolios =
     filter === "all"
@@ -27,12 +29,19 @@ const Portfolio = () => {
           className="text-center mb-5"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            My <span className="text-cyan-400">Portfolio</span>
+            {t("portfolio.title").split(" ").length > 1 ? (
+              <>
+                {t("portfolio.title").split(" ").slice(0, -1).join(" ")}{" "}
+                <span className="text-cyan-400">
+                  {t("portfolio.title").split(" ").slice(-1)[0]}
+                </span>
+              </>
+            ) : (
+              <span className="text-cyan-400">{t("portfolio.title")}</span>
+            )}
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Discover the projects I've recently worked on, encompassing
-            commercial applications, open-source contributions, and personal
-            ventures.
+            {t("portfolio.description")}
           </p>
         </motion.div>
 
@@ -48,7 +57,7 @@ const Portfolio = () => {
                   : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200 border border-gray-700"
               }`}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {t(`portfolio.categories.${category}`)}
             </button>
           ))}
         </div>
@@ -57,7 +66,14 @@ const Portfolio = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredPortfolios.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard
+                key={project.id}
+                project={{
+                  ...project,
+                  description: t(`portfolio.projects.${project.descriptionKey}`),
+                  viewLabel: t(project.hosted ? "portfolio.viewLive" : "portfolio.viewCode"),
+                }}
+              />
             ))}
           </AnimatePresence>
         </div>

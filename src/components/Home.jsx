@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import heroImg from "../assets/portfolio/me.png";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { Link } from "react-scroll";
+import { useLanguage } from "../context/LanguageContext";
 
 const Home = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { t } = useLanguage();
 
   return (
     <div
@@ -20,14 +22,10 @@ const Home = () => {
           className="flex flex-col justify-center h-full text-center md:text-left"
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight">
-            I'm a Magento 2 Developer
+            {t("home.title")}
           </h2>
           <p className="text-gray-400 py-4 max-w-md mx-auto md:mx-0 leading-relaxed">
-            Passionate Fullstack & Magento Developer | Crafting Seamless Digital
-            Experiences | Proficient in Programming, Web Development, and
-            Application Creation | Adaptable Team Player with a Creative &
-            Curious Mindset | Committed to Continuous Learning & Professional
-            Growth
+            {t("home.description")}
           </p>
           <div className="flex justify-center md:justify-start">
             <Link
@@ -36,7 +34,7 @@ const Home = () => {
               duration={500}
               className="group text-white w-fit px-6 py-3 my-2 flex items-center cursor-pointer rounded-md bg-gradient-to-r from-cyan-500 to-blue-500 hover:shadow-lg hover:shadow-cyan-500/25 transition-shadow duration-300"
             >
-              Portfolio
+              {t("home.cta")}
               <span className="group-hover:rotate-90 duration-300">
                 <MdOutlineKeyboardArrowRight size={25} className="ml-1" />
               </span>

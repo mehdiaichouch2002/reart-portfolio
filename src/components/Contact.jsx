@@ -2,6 +2,7 @@ import React from "react";
 import useContactForm from "../hooks/useContactForm";
 import LoadingOverlay from "./common/LoadingOverlay";
 import Notification from "./common/Notification";
+import { useLanguage } from "../context/LanguageContext";
 
 const inputClass = (hasError) =>
   `p-3 bg-gray-900/50 border-2 rounded-lg text-white focus:outline-none transition-all duration-300 ${
@@ -20,6 +21,7 @@ const Contact = () => {
     handleSubmit,
     setNotification,
   } = useContactForm();
+  const { t } = useLanguage();
 
   return (
     <div
@@ -29,11 +31,9 @@ const Contact = () => {
       <div className="flex flex-col p-4 justify-center max-w-screen-lg mx-auto h-full">
         <div className="pb-8 text-center">
           <p className="text-4xl font-bold inline border-b-4 border-cyan-500">
-            Contact
+            {t("contact.title")}
           </p>
-          <p className="py-6 text-gray-400">
-            Submit the form below to get in touch with me
-          </p>
+          <p className="py-6 text-gray-400">{t("contact.subtitle")}</p>
         </div>
 
         <div className="flex justify-center">
@@ -44,7 +44,7 @@ const Contact = () => {
             <input
               type="text"
               name="name"
-              placeholder="Enter your name"
+              placeholder={t("contact.namePlaceholder")}
               value={formData.name}
               onChange={handleChange}
               className={inputClass(formErrors.name)}
@@ -53,7 +53,7 @@ const Contact = () => {
             <input
               type="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder={t("contact.emailPlaceholder")}
               value={formData.email}
               onChange={handleChange}
               className={inputClass(formErrors.email)}
@@ -61,7 +61,7 @@ const Contact = () => {
 
             <textarea
               name="message"
-              placeholder="Enter your message"
+              placeholder={t("contact.messagePlaceholder")}
               rows="6"
               value={formData.message}
               onChange={handleChange}
@@ -73,13 +73,18 @@ const Contact = () => {
               disabled={isLoading}
               className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 w-full sm:w-auto sm:mx-auto flex items-center justify-center rounded-lg hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? "Sending..." : "Let's talk"}
+              {isLoading ? t("contact.sending") : t("contact.cta")}
             </button>
           </form>
         </div>
       </div>
 
-      <Notification type={notification} onClose={() => setNotification(null)} />
+      <Notification
+        type={notification}
+        onClose={() => setNotification(null)}
+        successMsg={t("notification.success")}
+        errorMsg={t("notification.error")}
+      />
       {isLoading && <LoadingOverlay />}
     </div>
   );

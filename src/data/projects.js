@@ -15,7 +15,7 @@ const projects = [
     title: "Freespace",
     hosted: false,
     category: "opensource",
-    description: "A space management application",
+    descriptionKey: "freespace",
     tech: ["PHP"],
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     title: "Requestify",
     hosted: false,
     category: "opensource",
-    description: "Request management system",
+    descriptionKey: "requestify",
     tech: ["Laravel"],
   },
   {
@@ -35,7 +35,7 @@ const projects = [
     title: "B2B Carhartt WIP",
     hosted: true,
     category: "commercial",
-    description: "B2B e-commerce platform",
+    descriptionKey: "carhartt",
     tech: ["Magento 2"],
   },
   {
@@ -45,7 +45,7 @@ const projects = [
     title: "Anita",
     hosted: true,
     category: "commercial",
-    description: "E-commerce website",
+    descriptionKey: "anita",
     tech: ["Magento 2"],
   },
   {
@@ -55,7 +55,7 @@ const projects = [
     title: "Edwin",
     hosted: true,
     category: "commercial",
-    description: "Fashion retail platform",
+    descriptionKey: "edwin",
     tech: ["Magento 2"],
   },
   {
@@ -65,7 +65,7 @@ const projects = [
     title: "Portfolio",
     hosted: false,
     category: "personal",
-    description: "Personal portfolio website",
+    descriptionKey: "portfolio",
     tech: ["React", "Tailwind"],
   },
   {
@@ -75,8 +75,7 @@ const projects = [
     title: "Daily Meeting Host Slack Bot",
     hosted: false,
     category: "opensource",
-    description:
-      "Python Slack bot that automatically hosts and manages daily stand-up meetings.",
+    descriptionKey: "slackbot",
     tech: ["Python", "Slack API"],
   },
   {
@@ -86,8 +85,7 @@ const projects = [
     title: "Library Management System",
     hosted: false,
     category: "opensource",
-    description:
-      "Dockerized system with book cataloging, user auth, and automated borrowing workflows.",
+    descriptionKey: "library",
     tech: ["PHP", "MySQL", "Nginx", "Docker"],
   },
 ];

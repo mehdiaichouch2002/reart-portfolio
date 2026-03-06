@@ -2,6 +2,7 @@ import React from "react";
 import { FaGithub, FaInstagram, FaFile, FaFacebook, FaLinkedin } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { useResumeModal } from "../context/ResumeModalContext";
+import { useLanguage } from "../context/LanguageContext";
 
 const socialLinks = [
   {
@@ -61,6 +62,7 @@ const socialLinks = [
 
 const Footer = () => {
   const { open } = useResumeModal();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-gradient-to-b from-black to-gray-900 text-white">
@@ -95,7 +97,7 @@ const Footer = () => {
           <div className="w-60 h-[1px] bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
 
           <div className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Mehdi Aichouch. All rights reserved.
+            &copy; {new Date().getFullYear()} Mehdi Aichouch. {t("footer.rights")}
           </div>
         </div>
       </div>
