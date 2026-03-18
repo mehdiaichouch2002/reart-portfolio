@@ -68,6 +68,16 @@ const translations = {
     footer: {
       rights: "All rights reserved.",
     },
+    chat: {
+      title: "AI Assistant",
+      subtitle: "Ask me about Mehdi",
+      online: "Online",
+      greeting: "Hi! I'm Mehdi's AI assistant. Ask me anything about his skills, experience, or projects!",
+      suggestions: ["What are his skills?", "Tell me about his projects", "Work experience?"],
+      placeholder: "Ask me anything...",
+      error: "Sorry, I encountered an error. Please try again.",
+      noApiKey: "API key not configured. Please add REACT_APP_ANTHROPIC_API_KEY to your .env file.",
+    },
     timeline: [
       {
         title: "ENSA Fes — Bachelor's in Web Frameworks & Java EE",
@@ -182,6 +192,16 @@ const translations = {
     },
     footer: {
       rights: "Tous droits réservés.",
+    },
+    chat: {
+      title: "Assistant IA",
+      subtitle: "Posez vos questions sur Mehdi",
+      online: "En ligne",
+      greeting: "Bonjour ! Je suis l'assistant IA de Mehdi. Posez-moi n'importe quelle question sur ses compétences, son expérience ou ses projets !",
+      suggestions: ["Quelles sont ses compétences ?", "Parlez-moi de ses projets", "Son expérience ?"],
+      placeholder: "Posez votre question...",
+      error: "Désolé, une erreur s'est produite. Veuillez réessayer.",
+      noApiKey: "Clé API non configurée. Ajoutez REACT_APP_ANTHROPIC_API_KEY à votre fichier .env.",
     },
     timeline: [
       {

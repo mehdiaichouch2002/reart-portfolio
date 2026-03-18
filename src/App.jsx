@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import { ResumeModalProvider } from "./context/ResumeModalContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import ResumeLanguageModal from "./components/common/ResumeLanguageModal";
+import AIChatAssistant from "./components/AIChatAssistant";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Footer />
         </div>
         <ResumeLanguageModal />
+        <AIChatAssistant />
       </ResumeModalProvider>
     </LanguageProvider>
   );
