@@ -1,9 +1,110 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-scroll";
 import navLinks from "../data/navLinks";
 import useScrolled from "../hooks/useScrolled";
 import { useLanguage } from "../context/LanguageContext";
+
+const NavLogo = ({ size = "md" }) => {
+  const isLg = size === "lg";
+  const dim = isLg ? 60 : 52;
+
+  return (
+    <Link
+      to="home"
+      smooth
+      duration={500}
+      className="group cursor-pointer select-none block"
+      style={{ width: dim, height: dim }}
+    >
+      <div className="relative w-full h-full">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 logo-glow pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(34,211,238,0.35) 0%, rgba(129,140,248,0.15) 60%, transparent 80%)",
+            filter: "blur(8px)",
+            transform: "scale(1.4)",
+          }}
+        />
+
+        {/* Main SVG mark */}
+        <svg
+          width={dim}
+          height={dim}
+          viewBox="0 0 48 48"
+          fill="none"
+          overflow="visible"
+          className="relative z-10 transition-transform duration-500 group-hover:scale-110"
+        >
+          <defs>
+            <linearGradient id="lg-main" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#22d3ee" />
+              <stop offset="1" stopColor="#818cf8" />
+            </linearGradient>
+            <radialGradient id="lg-fill" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#0e2035" />
+              <stop offset="100%" stopColor="#060b14" />
+            </radialGradient>
+          </defs>
+
+          {/* ── Hex pulse rings (radar / broadcast effect) ── */}
+          <path
+            d="M24 2 L40 13 L40 35 L24 46 L8 35 L8 13 Z"
+            stroke="url(#lg-main)" strokeWidth="1" fill="none"
+            style={{ transformOrigin: "24px 24px", animation: "logo-hex-pulse 2.6s ease-out infinite" }}
+          />
+          <path
+            d="M24 2 L40 13 L40 35 L24 46 L8 35 L8 13 Z"
+            stroke="url(#lg-main)" strokeWidth="1" fill="none"
+            style={{ transformOrigin: "24px 24px", animation: "logo-hex-pulse 2.6s ease-out 1.3s infinite" }}
+          />
+
+          {/* ── Outer rotating dashed ring (clockwise) ── */}
+          <g style={{ transformOrigin: "24px 24px", animation: "logo-spin-cw 10s linear infinite" }}>
+            <circle cx="24" cy="24" r="27" stroke="url(#lg-main)" strokeWidth="0.8"
+              strokeDasharray="3 7" fill="none" opacity="0.35" />
+          </g>
+
+          {/* ── Inner counter-rotating arc (CCW) ── */}
+          <g style={{ transformOrigin: "24px 24px", animation: "logo-spin-ccw 7s linear infinite" }}>
+            <circle cx="24" cy="24" r="19" stroke="url(#lg-main)" strokeWidth="0.6"
+              strokeDasharray="2 10" fill="none" opacity="0.2" />
+          </g>
+
+          {/* ── Hexagon fill + border ── */}
+          <path d="M24 2 L40 13 L40 35 L24 46 L8 35 L8 13 Z" fill="url(#lg-fill)" />
+          <path
+            d="M24 2 L40 13 L40 35 L24 46 L8 35 L8 13 Z"
+            stroke="url(#lg-main)" strokeWidth="1.2" fill="none"
+            opacity="0.8"
+            className="group-hover:opacity-100 transition-opacity duration-400"
+          />
+
+          {/* ── Radial spokes ── */}
+          <line x1="24" y1="24" x2="24" y2="2"  stroke="url(#lg-main)" strokeWidth="0.5" opacity="0.12" />
+          <line x1="24" y1="24" x2="40" y2="13" stroke="url(#lg-main)" strokeWidth="0.5" opacity="0.12" />
+          <line x1="24" y1="24" x2="8"  y2="13" stroke="url(#lg-main)" strokeWidth="0.5" opacity="0.12" />
+
+          {/* ── Vertex nodes ── */}
+          <circle cx="24" cy="2"  r="1.8" fill="#22d3ee" opacity="0.9" />
+          <circle cx="40" cy="13" r="1.8" fill="#818cf8" opacity="0.9" />
+          <circle cx="8"  cy="13" r="1.8" fill="#22d3ee" opacity="0.6" />
+
+          {/* ── Geometric M ── */}
+          <path
+            d="M13 34 L13 15 L24 25.5 L35 15 L35 34"
+            stroke="url(#lg-main)" strokeWidth="2.4"
+            strokeLinecap="round" strokeLinejoin="round"
+            fill="none"
+          />
+
+          {/* ── Center dot ── */}
+          <circle cx="24" cy="24" r="1.5" fill="url(#lg-main)" opacity="0.5" />
+        </svg>
+      </div>
+    </Link>
+  );
+};
 
 const LANGUAGES = [
   { code: "en", flag: "🇬🇧", label: "EN" },
@@ -34,11 +135,7 @@ const NavBar = () => {
         }`}
       >
         {/* Logo */}
-        <div>
-          <h1 className="text-4xl font-signature cursor-pointer bg-gradient-to-r py-1 from-cyan-500 to-white bg-clip-text text-transparent bg-[length:200%_100%] hover:bg-[position:100%_50%] transition-all duration-500">
-            Mehdi
-          </h1>
-        </div>
+        <NavLogo />
 
         {/* Desktop: nav links + language switcher */}
         <div className="hidden md:flex items-center gap-8">
@@ -133,9 +230,7 @@ const NavBar = () => {
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-gray-800">
-            <h1 className="text-3xl font-signature bg-gradient-to-r from-cyan-500 to-white bg-clip-text text-transparent">
-              Mehdi
-            </h1>
+            <NavLogo size="lg" />
             <button
               onClick={closeNav}
               className="p-2 text-gray-400 hover:text-white transition-colors duration-300 bg-transparent border-none"

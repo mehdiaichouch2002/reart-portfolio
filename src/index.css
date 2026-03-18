@@ -11,3 +11,27 @@
     font-family: "Raleway", sans-serif;
   }
 }
+
+@keyframes logo-glow-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.9; }
+}
+
+@keyframes logo-spin-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes logo-spin-ccw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes logo-hex-pulse {
+  0%   { transform: scale(1);    opacity: 0.55; }
+  100% { transform: scale(1.6);  opacity: 0; }
+}
+
+.logo-glow {
+  animation: logo-glow-pulse 2.8s ease-in-out infinite;
+}

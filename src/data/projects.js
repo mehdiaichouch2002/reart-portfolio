@@ -1,11 +1,11 @@
-import AnitaImg from "../assets/projects/anita.png";
-import CarharttImg from "../assets/projects/carhartt.png";
-import FreespaceImg from "../assets/projects/freespace.png";
-import EdwwinImg from "../assets/projects/edwin.png";
-import PortfolioImg from "../assets/projects/portfolio.jpg";
-import RequestifyImg from "../assets/projects/requestify.png";
-import SlackBotImg from "../assets/projects/slackbot.png";
-import LibraryImg from "../assets/projects/library.png";
+import AnitaImg from "../assets/projects/anita.svg";
+import CarharttImg from "../assets/projects/carhartt.svg";
+import FreespaceImg from "../assets/projects/freespace.svg";
+import EdwwinImg from "../assets/projects/edwin.svg";
+import PortfolioImg from "../assets/projects/portfolio.svg";
+import RequestifyImg from "../assets/projects/requestify.svg";
+import SlackBotImg from "../assets/projects/slackbot.svg";
+import LibraryImg from "../assets/projects/library.svg";
 
 const projects = [
   {
