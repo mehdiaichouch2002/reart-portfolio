@@ -33,12 +33,14 @@ const useChat = () => {
         ]);
       }
     } catch (err) {
-      console.error("Chat error:", err);
+      const isRateLimit = err.message === "rate_limit";
       setMessages([
         ...apiMessages,
         {
           role: "assistant",
-          content: "Sorry, something went wrong. Please try again. 😕",
+          content: isRateLimit
+            ? "The free AI model is rate-limited right now. Wait a few seconds and try again. ⏳"
+            : "Sorry, something went wrong. Please try again. 😕",
         },
       ]);
     } finally {

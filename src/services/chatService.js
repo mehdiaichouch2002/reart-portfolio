@@ -38,19 +38,22 @@ Rules:
 - Respond in the same language the visitor uses (English, French, or Arabic)
 - Never fabricate information not listed above`;
 
-function injectContext(messages) {
-  return messages.map((msg, i) => {
-    if (i === 0 && msg.role === "user") {
-      return {
-        role: "user",
-        content: `${SYSTEM_PROMPT}\n\nNow answer this based only on the context above — be concise and friendly:\n${msg.content}`,
-      };
+const API_KEY = process.env.REACT_APP_OPENROUTER_API_KEY;
+const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
+
+function parseErrorMessage(body) {
+  try {
+    const json = JSON.parse(body);
+    const msg = json?.error?.message ?? json?.message;
+    if (!msg) return body;
+    if (msg.toLowerCase().includes("rate") || msg.toLowerCase().includes("quota")) {
+      return "rate_limit";
     }
     return msg;
-  });
+  } catch {
+    return body;
+  }
 }
-
-const API_KEY = process.env.REACT_APP_OPENROUTER_API_KEY;
 
 export async function* streamChatResponse(messages) {
   if (!API_KEY) throw new Error("Missing REACT_APP_OPENROUTER_API_KEY in .env");
@@ -64,16 +67,16 @@ export async function* streamChatResponse(messages) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "google/gemma-3-4b-it:free",
-      messages: injectContext(messages),
+      model: MODEL,
+      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       stream: true,
       max_tokens: 400,
     }),
   });
 
   if (!response.ok) {
-    const err = await response.text();
-    throw new Error(err);
+    const body = await response.text();
+    throw new Error(parseErrorMessage(body));
   }
 
   const reader = response.body.getReader();
@@ -86,15 +89,22 @@ export async function* streamChatResponse(messages) {
     buffer += decoder.decode(value, { stream: true });
     const lines = buffer.split("\n");
     buffer = lines.pop();
+
     for (const line of lines) {
       if (!line.startsWith("data: ")) continue;
       const data = line.slice(6).trim();
       if (data === "[DONE]") return;
+
       try {
         const parsed = JSON.parse(data);
+        // OpenRouter can embed errors inside the stream
+        if (parsed.error) throw new Error(parseErrorMessage(JSON.stringify(parsed)));
         const text = parsed.choices?.[0]?.delta?.content;
         if (text) yield text;
-      } catch {}
+      } catch (e) {
+        if (e.message !== "rate_limit") throw e;
+        throw e;
+      }
     }
   }
 }
