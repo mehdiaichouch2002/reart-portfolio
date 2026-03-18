@@ -1,8 +1,46 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BsStars, BsX, BsSendFill } from "react-icons/bs";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useLanguage } from "../context/LanguageContext";
 import useChat from "../hooks/useChat";
+
+const mdComponents = {
+  p:      ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
+  strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+  em:     ({ children }) => <em className="italic text-gray-300">{children}</em>,
+  a:      ({ href, children }) => (
+    <a href={href} target="_blank" rel="noreferrer"
+      className="text-cyan-400 underline underline-offset-2 hover:text-cyan-300 transition-colors">
+      {children}
+    </a>
+  ),
+  ul: ({ children }) => <ul className="list-disc list-inside space-y-0.5 mb-2 pl-1">{children}</ul>,
+  ol: ({ children }) => <ol className="list-decimal list-inside space-y-0.5 mb-2 pl-1">{children}</ol>,
+  li: ({ children }) => <li className="text-gray-200">{children}</li>,
+  h1: ({ children }) => <h1 className="text-base font-bold text-white mb-1 mt-2">{children}</h1>,
+  h2: ({ children }) => <h2 className="text-sm font-bold text-white mb-1 mt-2">{children}</h2>,
+  h3: ({ children }) => <h3 className="text-sm font-semibold text-cyan-300 mb-1 mt-2">{children}</h3>,
+  code: ({ inline, children }) =>
+    inline ? (
+      <code className="bg-gray-700/70 text-cyan-300 text-xs px-1.5 py-0.5 rounded font-mono">{children}</code>
+    ) : (
+      <code className="block bg-gray-800 text-cyan-300 text-xs p-3 rounded-lg font-mono overflow-x-auto my-2 border border-gray-700/50">{children}</code>
+    ),
+  table: ({ children }) => (
+    <div className="overflow-x-auto my-2">
+      <table className="text-xs w-full border-collapse">{children}</table>
+    </div>
+  ),
+  thead: ({ children }) => <thead className="border-b border-gray-600">{children}</thead>,
+  th:    ({ children }) => <th className="text-left text-cyan-400 font-semibold py-1.5 pr-3">{children}</th>,
+  td:    ({ children }) => <td className="py-1.5 pr-3 text-gray-300 border-b border-gray-700/40">{children}</td>,
+  hr:    () => <hr className="border-gray-700 my-2" />,
+  blockquote: ({ children }) => (
+    <blockquote className="border-l-2 border-cyan-500/50 pl-3 italic text-gray-400 my-2">{children}</blockquote>
+  ),
+};
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -31,12 +69,14 @@ const AssistantBubble = ({ text, streaming }) => (
     <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0 mt-1 mr-2">
       <BsStars size={10} className="text-white" />
     </div>
-    <div className="max-w-[78%] rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm leading-relaxed bg-gray-800 text-gray-100 whitespace-pre-wrap">
+    <div className="max-w-[78%] rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm bg-gray-800 text-gray-100">
       {streaming && !text ? (
         <TypingDots />
       ) : (
         <>
-          {text}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={mdComponents}>
+            {text}
+          </ReactMarkdown>
           {streaming && (
             <span className="inline-block w-0.5 h-3.5 bg-cyan-400 ml-0.5 animate-pulse align-middle" />
           )}
