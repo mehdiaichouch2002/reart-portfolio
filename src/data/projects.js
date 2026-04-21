@@ -6,6 +6,8 @@ import PortfolioImg from "../assets/projects/portfolio.svg";
 import RequestifyImg from "../assets/projects/requestify.svg";
 import SlackBotImg from "../assets/projects/slackbot.svg";
 import LibraryImg from "../assets/projects/library.svg";
+import AttributeImportImg from "../assets/projects/attribute-import.svg";
+import MagentoFeaturesImg from "../assets/projects/magento-features.svg";
 
 const projects = [
   {
@@ -87,6 +89,26 @@ const projects = [
     category: "opensource",
     descriptionKey: "library",
     tech: ["PHP", "MySQL", "Nginx", "Docker"],
+  },
+  {
+    id: 9,
+    src: AttributeImportImg,
+    href: "https://github.com/mehdiaichouch2002/Aichouchm-AttributeImport",
+    title: "Attribute Import",
+    hosted: false,
+    category: "opensource",
+    descriptionKey: "attributeImport",
+    tech: ["Magento 2", "PHP"],
+  },
+  {
+    id: 10,
+    src: MagentoFeaturesImg,
+    href: "https://github.com/mehdiaichouch2002/magento-features",
+    title: "Magento 2 Innovation Lab",
+    hosted: false,
+    category: "opensource",
+    descriptionKey: "magentoFeatures",
+    tech: ["Magento 2", "Docker", "PHP"],
   },
 ];
 

@@ -39,6 +39,10 @@ const translations = {
           "Python Slack bot that automatically hosts and manages daily stand-up meetings.",
         library:
           "Dockerized system with book cataloging, user auth, and automated borrowing workflows.",
+        attributeImport:
+          "Magento 2 module for bulk importing product attribute options from CSV files via the Admin Panel.",
+        magentoFeatures:
+          "Fully Dockerized Magento 2 sandbox with Varnish, Redis, RabbitMQ, and Robo task runner for developing production-quality custom modules.",
       },
     },
     skills: {
@@ -164,6 +168,10 @@ const translations = {
           "Bot Slack Python qui anime et gère automatiquement les réunions daily stand-up.",
         library:
           "Système dockerisé avec catalogage de livres, authentification et gestion d'emprunts.",
+        attributeImport:
+          "Module Magento 2 pour l'importation en masse d'options d'attributs produit depuis des fichiers CSV via le panneau d'administration.",
+        magentoFeatures:
+          "Environnement de développement Magento 2 entièrement dockerisé avec Varnish, Redis, RabbitMQ et Robo pour développer des modules personnalisés de qualité production.",
       },
     },
     skills: {
