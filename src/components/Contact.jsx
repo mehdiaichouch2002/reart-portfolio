@@ -4,11 +4,14 @@ import LoadingOverlay from "./common/LoadingOverlay";
 import Notification from "./common/Notification";
 import { useLanguage } from "../context/LanguageContext";
 
+const inputBase =
+  "w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3.5 text-white text-sm placeholder-gray-500 focus:outline-none transition-colors duration-200";
+
 const inputClass = (hasError) =>
-  `w-full p-3.5 bg-gray-800/60 border rounded-xl text-white placeholder-gray-500 focus:outline-none transition-all duration-200 text-sm ${
+  `${inputBase} ${
     hasError
-      ? "border-red-500/70 ring-2 ring-red-500/20"
-      : "border-gray-700/60 focus:border-cyan-500/60 focus:ring-2 focus:ring-cyan-500/20"
+      ? "border-red-500/70 focus:border-red-500"
+      : "focus:border-cyan-500/70"
   }`;
 
 const Contact = () => {
@@ -26,9 +29,9 @@ const Contact = () => {
   return (
     <div
       name="contact"
-      className="py-20 w-full bg-gradient-to-b from-black to-gray-800 px-4 text-white"
+      className="w-full bg-gradient-to-b from-black to-gray-800 px-4 text-white py-20"
     >
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-screen-lg mx-auto px-4">
 
         {/* Heading */}
         <motion.div
@@ -41,57 +44,55 @@ const Contact = () => {
           <h2 className="text-2xl md:text-3xl font-extrabold inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pb-2 border-b-2 border-cyan-400">
             {t("contact.title")}
           </h2>
-          <p className="mt-4 text-gray-400 text-sm max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 text-gray-400 max-w-md mx-auto">
             {t("contact.subtitle")}
           </p>
         </motion.div>
 
-        {/* Form card */}
-        <motion.div
+        {/* Form */}
+        <motion.form
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="bg-gray-900/50 border border-gray-700/50 rounded-2xl p-6 sm:p-8"
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 max-w-lg mx-auto"
         >
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder={t("contact.namePlaceholder")}
-                value={formData.name}
-                onChange={handleChange}
-                className={inputClass(formErrors.name)}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder={t("contact.emailPlaceholder")}
-                value={formData.email}
-                onChange={handleChange}
-                className={inputClass(formErrors.email)}
-              />
-            </div>
+          <input
+            type="text"
+            name="name"
+            placeholder={t("contact.namePlaceholder")}
+            value={formData.name}
+            onChange={handleChange}
+            className={inputClass(formErrors.name)}
+          />
 
-            <textarea
-              name="message"
-              placeholder={t("contact.messagePlaceholder")}
-              rows="5"
-              value={formData.message}
-              onChange={handleChange}
-              className={`resize-none ${inputClass(formErrors.message)}`}
-            />
+          <input
+            type="email"
+            name="email"
+            placeholder={t("contact.emailPlaceholder")}
+            value={formData.email}
+            onChange={handleChange}
+            className={inputClass(formErrors.email)}
+          />
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="self-end text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3 rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/25 hover:brightness-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? t("contact.sending") : t("contact.cta")}
-            </button>
-          </form>
-        </motion.div>
+          <textarea
+            name="message"
+            placeholder={t("contact.messagePlaceholder")}
+            rows="6"
+            value={formData.message}
+            onChange={handleChange}
+            className={`resize-none ${inputClass(formErrors.message)}`}
+          />
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/25 hover:brightness-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isLoading ? t("contact.sending") : t("contact.cta")}
+          </button>
+        </motion.form>
 
       </div>
 

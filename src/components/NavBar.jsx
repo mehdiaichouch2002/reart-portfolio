@@ -124,6 +124,32 @@ const NavBar = () => {
     return () => document.body.classList.remove("overflow-hidden");
   }, [nav]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const navHeight = 82;
+      const atBottom =
+        window.innerHeight + scrollY >= document.documentElement.scrollHeight - 50;
+
+      if (atBottom) {
+        setActiveSection(navLinks[navLinks.length - 1].link);
+        return;
+      }
+
+      let current = "home";
+      for (const { link } of navLinks) {
+        const el = document.querySelector(`[name="${link}"]`);
+        if (el && el.offsetTop - navHeight <= scrollY) {
+          current = link;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       {/* Top Nav Bar */}
@@ -146,9 +172,7 @@ const NavBar = () => {
                   to={link}
                   smooth
                   duration={500}
-                  spy
                   offset={-80}
-                  onSetActive={() => setActiveSection(link)}
                   className={`capitalize font-medium transition-colors duration-300 ease-in-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 rounded px-1 ${
                     activeSection === link
                       ? "text-white"
