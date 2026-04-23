@@ -40,19 +40,10 @@ const Portfolio = () => {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            {t("portfolio.title").split(" ").length > 1 ? (
-              <>
-                {t("portfolio.title").split(" ").slice(0, -1).join(" ")}{" "}
-                <span className="text-cyan-400">
-                  {t("portfolio.title").split(" ").slice(-1)[0]}
-                </span>
-              </>
-            ) : (
-              <span className="text-cyan-400">{t("portfolio.title")}</span>
-            )}
+          <h2 className="text-2xl md:text-3xl font-extrabold inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pb-2 border-b-2 border-cyan-400">
+            {t("portfolio.title")}
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
             {t("portfolio.description")}
           </p>
         </motion.div>
@@ -133,7 +124,7 @@ const Portfolio = () => {
                 <span className="relative flex items-center gap-2.5">
                   {isExpanded ? (
                     <>
-                      Show less
+                      {t("portfolio.showLess")}
                       <motion.span
                         key="up"
                         initial={{ rotate: 180, opacity: 0 }}
@@ -145,7 +136,7 @@ const Portfolio = () => {
                     </>
                   ) : (
                     <>
-                      Show {remaining} more {remaining === 1 ? "project" : "projects"}
+                      {remaining} {t("portfolio.showMore")}
                       <motion.span
                         key="down"
                         initial={{ rotate: -180, opacity: 0 }}

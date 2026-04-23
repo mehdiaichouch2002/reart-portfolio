@@ -7,24 +7,28 @@ import { useResumeModal } from "../context/ResumeModalContext";
 const links = [
   {
     id: 1,
-    icon: <FaLinkedin size={30} />,
+    icon: <FaLinkedin size={20} />,
     href: "https://www.linkedin.com/in/aichouch-mehdi/",
-    style: "rounded-tr-md",
+    label: "LinkedIn",
+    style: "rounded-tr-lg",
   },
   {
     id: 2,
-    icon: <FaGithub size={30} />,
+    icon: <FaGithub size={20} />,
     href: "https://github.com/mehdiaichouch2002",
+    label: "GitHub",
   },
   {
     id: 3,
-    icon: <HiOutlineMail size={30} />,
-    href: "mailto:mehdi2002aichouch@mail.com",
+    icon: <HiOutlineMail size={20} />,
+    href: "mailto:mehdi2002aichouch@gmail.com",
+    label: "Email",
   },
   {
     id: 4,
-    icon: <BsFillPersonLinesFill size={30} />,
-    style: "rounded-br-md",
+    icon: <BsFillPersonLinesFill size={20} />,
+    label: "Resume",
+    style: "rounded-br-lg",
     isResume: true,
   },
 ];
@@ -38,27 +42,31 @@ const SocialLinks = () => {
         {links.map((link) => (
           <li
             key={link.id}
-            className={
-              "flex justify-between items-center w-20 h-14 px-4 ml-[-30px] hover:ml-[-25px] hover:rounded-md duration-300 bg-gray-500 " +
-              (link.style || "")
-            }
+            className={`group relative flex items-center w-[52px] hover:w-32 h-12 bg-gray-900 border border-gray-700/60 hover:border-cyan-500/40 hover:bg-gray-800 transition-all duration-300 overflow-hidden ${link.style ?? ""}`}
           >
             {link.isResume ? (
               <button
                 onClick={open}
-                className="flex justify-between items-center w-full text-white ml-5 bg-transparent border-none cursor-pointer"
-                aria-label="Download Resume"
+                className="flex items-center gap-3 w-full h-full px-3.5 text-gray-400 group-hover:text-cyan-400 bg-transparent border-none cursor-pointer transition-colors duration-300"
+                aria-label={link.label}
               >
-                {link.icon}
+                <span className="flex-shrink-0">{link.icon}</span>
+                <span className="text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75">
+                  {link.label}
+                </span>
               </button>
             ) : (
               <a
                 href={link.href}
-                className="flex justify-between items-center w-full text-white ml-5"
                 target="_blank"
                 rel="noreferrer"
+                className="flex items-center gap-3 w-full h-full px-3.5 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300"
+                aria-label={link.label}
               >
-                {link.icon}
+                <span className="flex-shrink-0">{link.icon}</span>
+                <span className="text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-75">
+                  {link.label}
+                </span>
               </a>
             )}
           </li>

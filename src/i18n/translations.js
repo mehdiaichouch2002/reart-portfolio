@@ -8,10 +8,12 @@ const translations = {
       contact: "Contact",
     },
     home: {
-      title: "I'm a Magento 2 Developer",
+      greeting: "Hi, I'm Mehdi Aichouch",
+      titlePrefix: "I'm a",
+      roles: ["Magento 2 Developer", "Full-Stack Developer", "React Developer"],
       description:
         "Passionate Fullstack & Magento Developer | Crafting Seamless Digital Experiences | Proficient in Programming, Web Development, and Application Creation | Adaptable Team Player with a Creative & Curious Mindset | Committed to Continuous Learning & Professional Growth",
-      cta: "Portfolio",
+      cta: "View Portfolio",
     },
     about: {
       title: "About Me",
@@ -28,6 +30,8 @@ const translations = {
       },
       viewLive: "View Live",
       viewCode: "View Code",
+      showMore: "more",
+      showLess: "Show less",
       projects: {
         freespace: "A space management application",
         requestify: "Request management system",
@@ -51,7 +55,10 @@ const translations = {
     },
     contact: {
       title: "Contact",
-      subtitle: "Submit the form below to get in touch with me",
+      subtitle: "Have a project in mind or want to work together? Let's connect.",
+      infoTitle: "Get in Touch",
+      infoText: "I'm always open to new opportunities, collaborations, or just a friendly chat about tech.",
+      location: "Fez, Morocco",
       namePlaceholder: "Enter your name",
       emailPlaceholder: "Enter your email",
       messagePlaceholder: "Enter your message",
@@ -137,10 +144,12 @@ const translations = {
       contact: "Contact",
     },
     home: {
-      title: "Je suis Développeur Magento 2",
+      greeting: "Bonjour, je suis Mehdi Aichouch",
+      titlePrefix: "Je suis",
+      roles: ["Développeur Magento 2", "Développeur Full-Stack", "Développeur React"],
       description:
         "Développeur Fullstack & Magento passionné | Création d'expériences digitales fluides | Maîtrise de la programmation, du développement web et de la création d'applications | Esprit d'équipe créatif et curieux | Engagé dans l'apprentissage continu et la croissance professionnelle",
-      cta: "Portfolio",
+      cta: "Voir Portfolio",
     },
     about: {
       title: "À Propos",
@@ -157,6 +166,8 @@ const translations = {
       },
       viewLive: "Voir le site",
       viewCode: "Voir le code",
+      showMore: "de plus",
+      showLess: "Afficher moins",
       projects: {
         freespace: "Une application de gestion d'espaces",
         requestify: "Système de gestion des demandes",
@@ -180,7 +191,10 @@ const translations = {
     },
     contact: {
       title: "Contact",
-      subtitle: "Remplissez le formulaire ci-dessous pour me contacter",
+      subtitle: "Un projet ou une idée à partager ? Je suis disponible pour collaborer.",
+      infoTitle: "Prenons contact",
+      infoText: "Je suis toujours ouvert aux nouvelles opportunités, collaborations ou simplement une discussion tech.",
+      location: "Fès, Maroc",
       namePlaceholder: "Votre nom",
       emailPlaceholder: "Votre email",
       messagePlaceholder: "Votre message",

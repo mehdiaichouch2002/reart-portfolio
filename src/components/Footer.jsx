@@ -40,7 +40,7 @@ const socialLinks = [
   {
     id: 5,
     icon: <HiOutlineMail className="w-5 h-5" />,
-    href: "mailto:mehdi2002aichouch@mail.com",
+    href: "mailto:mehdi2002aichouch@gmail.com",
     label: "Email",
     color: "hover:text-red-500",
   },
