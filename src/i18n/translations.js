@@ -47,6 +47,12 @@ const translations = {
           "Magento 2 module for bulk importing product attribute options from CSV files via the Admin Panel.",
         magentoFeatures:
           "Fully Dockerized Magento 2 sandbox with Varnish, Redis, RabbitMQ, and Robo task runner for developing production-quality custom modules.",
+        echallenge:
+          "Online exam platform with timed tests, slot booking, and admin management — Spring Boot 3 REST API secured with JWT, React 19 frontend.",
+        freespaceBlog:
+          "Django 6 blog platform with featured-post slider, nested comments, AJAX likes, infinite scroll, and user profiles.",
+        jeeProducts:
+          "Layered Jakarta EE product catalog with full CRUD, servlet MVC controller, and JDBC DAO on MySQL.",
       },
     },
     skills: {
@@ -188,6 +194,12 @@ const translations = {
           "Module Magento 2 pour l'importation en masse d'options d'attributs produit depuis des fichiers CSV via le panneau d'administration.",
         magentoFeatures:
           "Environnement de développement Magento 2 entièrement dockerisé avec Varnish, Redis, RabbitMQ et Robo pour développer des modules personnalisés de qualité production.",
+        echallenge:
+          "Plateforme d'examens en ligne avec tests chronométrés, réservation de créneaux et gestion admin — API REST Spring Boot 3 sécurisée par JWT, frontend React 19.",
+        freespaceBlog:
+          "Plateforme de blog Django 6 avec slider de posts mis en avant, commentaires imbriqués, likes AJAX, défilement infini et profils utilisateurs.",
+        jeeProducts:
+          "Catalogue de produits Jakarta EE en couches avec CRUD complet, contrôleur servlet MVC et DAO JDBC sur MySQL.",
       },
     },
     skills: {

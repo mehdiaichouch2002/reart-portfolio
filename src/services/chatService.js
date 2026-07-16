@@ -23,6 +23,11 @@ Projects:
 6. Portfolio – This website (React + Tailwind)
 7. Daily Meeting Host Slack Bot – Python bot automating stand-ups
 8. Library Management System – PHP, MySQL, Nginx, Docker
+9. Attribute Import – Magento 2 module for bulk importing product attribute options from CSV
+10. Magento 2 Innovation Lab – Dockerized Magento 2 sandbox (Varnish, Redis, RabbitMQ, Robo)
+11. EChallenge – Online exam platform with timed tests and JWT security (Spring Boot 3 + React 19 + MySQL)
+12. Free Space Blog – Django 6 blog with nested comments, AJAX likes, infinite scroll (MySQL, Tailwind)
+13. JEE Product Management – Layered Jakarta EE CRUD catalog (Servlet MVC, JDBC, MySQL)
 
 Career Timeline:
 - 2020: High School degree, Fez

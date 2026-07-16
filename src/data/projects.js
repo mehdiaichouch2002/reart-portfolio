@@ -8,8 +8,41 @@ import SlackBotImg from "../assets/projects/slackbot.svg";
 import LibraryImg from "../assets/projects/library.svg";
 import AttributeImportImg from "../assets/projects/attribute-import.svg";
 import MagentoFeaturesImg from "../assets/projects/magento-features.svg";
+import EChallengeImg from "../assets/projects/echallenge.svg";
+import JeeProductsImg from "../assets/projects/jee-products.svg";
+import FreespaceBlogImg from "../assets/projects/freespace-blog.svg";
 
 const projects = [
+  {
+    id: 11,
+    src: EChallengeImg,
+    href: "https://github.com/mehdiaichouch2002/echallenge",
+    title: "EChallenge",
+    hosted: false,
+    category: "opensource",
+    descriptionKey: "echallenge",
+    tech: ["Spring Boot", "React", "MySQL"],
+  },
+  {
+    id: 12,
+    src: FreespaceBlogImg,
+    href: "https://github.com/mehdiaichouch2002/free-space-blog",
+    title: "Free Space Blog",
+    hosted: false,
+    category: "opensource",
+    descriptionKey: "freespaceBlog",
+    tech: ["Django", "MySQL", "Tailwind"],
+  },
+  {
+    id: 13,
+    src: JeeProductsImg,
+    href: "https://github.com/mehdiaichouch2002/JEE-Product-management",
+    title: "JEE Product Management",
+    hosted: false,
+    category: "opensource",
+    descriptionKey: "jeeProducts",
+    tech: ["Java EE", "MySQL"],
+  },
   {
     id: 1,
     src: FreespaceImg,
@@ -73,7 +106,7 @@ const projects = [
   {
     id: 7,
     src: SlackBotImg,
-    href: "https://github.com/mehdiaichouch2002/Daily-Meeting-Host-Python-Slack-bot",
+    href: "https://github.com/mehdiaichouch2002/Daily-Meeting-Host-Python-Slack-bot-",
     title: "Daily Meeting Host Slack Bot",
     hosted: false,
     category: "opensource",

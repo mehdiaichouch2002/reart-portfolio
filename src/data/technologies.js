@@ -15,6 +15,9 @@ import bootstrap from "../assets/technologies/bootstrap.png";
 import python from "../assets/technologies/python.png";
 import java from "../assets/technologies/java.png";
 import docker from "../assets/technologies/docker.png";
+import spring from "../assets/technologies/spring-original.svg";
+import django from "../assets/technologies/django-plain.svg";
+import mysql from "../assets/technologies/mysql-original.svg";
 
 const technologies = [
   {
@@ -136,6 +139,27 @@ const technologies = [
     title: "Docker",
     style: "shadow-sky-500",
     documentation: "https://docs.docker.com/",
+  },
+  {
+    id: 18,
+    src: spring,
+    title: "Spring Boot",
+    style: "shadow-green-500",
+    documentation: "https://docs.spring.io/spring-boot/",
+  },
+  {
+    id: 19,
+    src: django,
+    title: "Django",
+    style: "shadow-emerald-500",
+    documentation: "https://docs.djangoproject.com/",
+  },
+  {
+    id: 20,
+    src: mysql,
+    title: "MySQL",
+    style: "shadow-blue-400",
+    documentation: "https://dev.mysql.com/doc/",
   },
 ];
 
