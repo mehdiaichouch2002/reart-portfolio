@@ -29,6 +29,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-markdown$": "<rootDir>/src/__mocks__/reactMarkdownMock.jsx",
+      "^remark-gfm$": "<rootDir>/src/__mocks__/remarkGfmMock.js"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

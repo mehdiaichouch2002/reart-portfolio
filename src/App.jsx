@@ -15,7 +15,7 @@ function App() {
   return (
     <LanguageProvider>
       <ResumeModalProvider>
-        <div className="select-none">
+        <div>
           <NavBar />
           <Home />
           <About />

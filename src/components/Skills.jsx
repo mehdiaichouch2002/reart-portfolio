@@ -15,6 +15,7 @@ const SLIDER_SETTINGS = {
   slidesToScroll: 2,
   autoplay: true,
   autoplaySpeed: 3000,
+  swipeToSlide: true,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
   responsive: [

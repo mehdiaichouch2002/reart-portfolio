@@ -26,6 +26,13 @@ const Contact = () => {
   } = useContactForm();
   const { t } = useLanguage();
 
+  const FieldError = ({ field }) =>
+    formErrors[field] ? (
+      <p role="alert" className="text-red-400 text-xs mt-1.5 ml-1">
+        {t(`contact.errors.${field}`)}
+      </p>
+    ) : null;
+
   return (
     <div
       name="contact"
@@ -56,34 +63,62 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
+          noValidate
           className="flex flex-col gap-4 max-w-lg mx-auto"
         >
-          <input
-            type="text"
-            name="name"
-            placeholder={t("contact.namePlaceholder")}
-            value={formData.name}
-            onChange={handleChange}
-            className={inputClass(formErrors.name)}
-          />
+          <div>
+            <label htmlFor="contact-name" className="sr-only">
+              {t("contact.namePlaceholder")}
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              placeholder={t("contact.namePlaceholder")}
+              value={formData.name}
+              onChange={handleChange}
+              aria-invalid={!!formErrors.name}
+              className={inputClass(formErrors.name)}
+            />
+            <FieldError field="name" />
+          </div>
 
-          <input
-            type="email"
-            name="email"
-            placeholder={t("contact.emailPlaceholder")}
-            value={formData.email}
-            onChange={handleChange}
-            className={inputClass(formErrors.email)}
-          />
+          <div>
+            <label htmlFor="contact-email" className="sr-only">
+              {t("contact.emailPlaceholder")}
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              inputMode="email"
+              placeholder={t("contact.emailPlaceholder")}
+              value={formData.email}
+              onChange={handleChange}
+              aria-invalid={!!formErrors.email}
+              className={inputClass(formErrors.email)}
+            />
+            <FieldError field="email" />
+          </div>
 
-          <textarea
-            name="message"
-            placeholder={t("contact.messagePlaceholder")}
-            rows="6"
-            value={formData.message}
-            onChange={handleChange}
-            className={`resize-none ${inputClass(formErrors.message)}`}
-          />
+          <div>
+            <label htmlFor="contact-message" className="sr-only">
+              {t("contact.messagePlaceholder")}
+            </label>
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder={t("contact.messagePlaceholder")}
+              rows="6"
+              value={formData.message}
+              onChange={handleChange}
+              aria-invalid={!!formErrors.message}
+              className={`resize-none ${inputClass(formErrors.message)}`}
+            />
+            <FieldError field="message" />
+          </div>
 
           <button
             type="submit"

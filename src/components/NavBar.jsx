@@ -125,6 +125,13 @@ const NavBar = () => {
   }, [nav]);
 
   useEffect(() => {
+    if (!nav) return;
+    const onKey = (e) => e.key === "Escape" && closeNav();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [nav, closeNav]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const navHeight = 82;
@@ -231,6 +238,7 @@ const NavBar = () => {
             onClick={() => setNav(true)}
             className="cursor-pointer p-2 text-gray-400 hover:text-white transition-colors duration-300 bg-transparent border-none"
             aria-label="Open menu"
+            aria-expanded={nav}
           >
             <FaBars size={26} />
           </button>
@@ -243,6 +251,7 @@ const NavBar = () => {
           nav ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeNav}
+        aria-hidden="true"
       />
 
       {/* Mobile Sidebar */}

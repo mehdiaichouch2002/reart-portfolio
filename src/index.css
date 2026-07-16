@@ -9,6 +9,64 @@
 @layer base{
   html{
     font-family: "Raleway", sans-serif;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  html, body {
+    overflow-x: clip;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img, svg, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background-color: rgba(34, 211, 238, 0.3);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.7);
+    outline-offset: 2px;
+  }
+}
+
+/* Custom scrollbar (WebKit) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 8px;
+  border: 2px solid #0b0f19;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22d3ee;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

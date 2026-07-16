@@ -31,7 +31,7 @@ const TypewriterRoles = ({ roles }) => {
   }, [displayed, phase, roleIdx, roles]);
 
   return (
-    <span className="text-cyan-400 whitespace-nowrap">
+    <span className="text-cyan-400">
       {displayed}
       <span className="inline-block w-[3px] h-[0.85em] bg-cyan-400 ml-1 align-middle animate-pulse rounded-sm" />
     </span>
@@ -46,32 +46,32 @@ const Home = () => {
   return (
     <div
       name="home"
-      className="w-full pt-32 md:pt-52 pb-20 bg-gradient-to-b from-black via-black to-gray-800"
+      className="w-full min-h-svh flex items-center pt-24 pb-16 md:pt-20 bg-gradient-to-b from-black via-black to-gray-800"
     >
-      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center h-full px-6 md:flex-row gap-10 md:gap-16">
+      <div className="max-w-screen-lg w-full mx-auto flex flex-col items-center justify-center px-6 lg:flex-row gap-10 lg:gap-16">
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col justify-center h-full text-center md:text-left"
+          className="flex flex-col justify-center h-full text-center lg:text-left"
         >
           <p className="text-cyan-400/80 text-sm font-semibold tracking-widest uppercase mb-3">
             {t("home.greeting")}
           </p>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight tracking-tight">
+          <h2 className="text-[clamp(1.875rem,8.5vw,2.25rem)] sm:text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight">
             <span className="block text-white">{t("home.titlePrefix")}</span>
-            <span className="block whitespace-nowrap overflow-hidden">
+            <span className="block min-h-[1.3em] whitespace-normal sm:whitespace-nowrap">
               <TypewriterRoles roles={roles} />
             </span>
           </h2>
 
-          <p className="text-gray-400 py-5 max-w-md mx-auto md:mx-0 leading-relaxed text-sm sm:text-base">
+          <p className="text-gray-400 py-5 max-w-md mx-auto lg:mx-0 leading-relaxed text-sm sm:text-base">
             {t("home.description")}
           </p>
 
-          <div className="flex justify-center md:justify-start">
+          <div className="flex justify-center lg:justify-start">
             <Link
               to="portfolio"
               smooth
@@ -90,18 +90,18 @@ const Home = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="mt-4 md:mt-0 flex justify-center relative"
+          className="mt-4 lg:mt-0 flex justify-center relative"
         >
           {/* Glow ring behind the image */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-2xl scale-110 pointer-events-none" />
 
           {!imageLoaded && (
-            <div className="rounded-2xl w-64 sm:w-72 md:w-80 md:max-w-xs aspect-square bg-gray-700 animate-pulse" />
+            <div className="rounded-2xl w-52 xs:w-64 sm:w-72 md:w-80 md:max-w-xs aspect-square bg-gray-700 animate-pulse" />
           )}
           <img
             src={heroImg}
             alt="Mehdi Aichouch profile"
-            className={`relative rounded-2xl w-64 sm:w-72 md:w-80 md:max-w-xs ring-2 ring-cyan-500/20 transition-opacity duration-500 ${
+            className={`relative rounded-2xl w-52 xs:w-64 sm:w-72 md:w-80 md:max-w-xs ring-2 ring-cyan-500/20 transition-opacity duration-500 ${
               imageLoaded ? "opacity-100" : "opacity-0 absolute"
             }`}
             onLoad={() => setImageLoaded(true)}

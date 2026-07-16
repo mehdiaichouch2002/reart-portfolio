@@ -64,6 +64,11 @@ const translations = {
       messagePlaceholder: "Enter your message",
       sending: "Sending...",
       cta: "Let's talk",
+      errors: {
+        name: "Please enter your name",
+        email: "Please enter a valid email address",
+        message: "Please enter a message",
+      },
     },
     notification: {
       success: "Mail sent successfully!",
@@ -200,6 +205,11 @@ const translations = {
       messagePlaceholder: "Votre message",
       sending: "Envoi...",
       cta: "Parlons-en",
+      errors: {
+        name: "Veuillez saisir votre nom",
+        email: "Veuillez saisir une adresse email valide",
+        message: "Veuillez saisir un message",
+      },
     },
     notification: {
       success: "Message envoyé avec succès !",

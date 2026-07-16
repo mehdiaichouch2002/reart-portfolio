@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaFile } from "react-icons/fa";
 import { useResumeModal } from "../../context/ResumeModalContext";
 import { useLanguage } from "../../context/LanguageContext";
@@ -19,15 +19,29 @@ const ResumeLanguageModal = () => {
     close();
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e) => e.key === "Escape" && close();
+    window.addEventListener("keydown", onKey);
+    document.body.classList.add("overflow-hidden");
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen, close]);
+
   if (!isOpen) return null;
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 backdrop-blur-sm"
+      className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[80] backdrop-blur-sm p-4"
       onClick={close}
+      role="dialog"
+      aria-modal="true"
+      aria-label={t("resumeModal.title")}
     >
       <div
-        className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-lg p-8 max-w-md w-full mx-4 shadow-2xl border border-cyan-500/30"
+        className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-lg p-6 sm:p-8 max-w-md w-full max-h-[90dvh] overflow-y-auto shadow-2xl border border-cyan-500/30"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-center mb-6">
