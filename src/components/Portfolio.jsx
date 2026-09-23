@@ -23,14 +23,14 @@ const TechList = ({ tech }) => (
 const ClientProject = ({ project, t }) => (
   <article className="grid gap-6 md:gap-10 md:grid-cols-[1fr_1.15fr] items-center py-10 md:py-14 border-t border-line first:border-t-0 first:pt-4">
     <div>
-      <p className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-zellige">
-        <span className="w-2 h-2 rounded-full bg-zellige" aria-hidden="true" />
+      <p className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-live">
+        <span className="w-2 h-2 rounded-full bg-live" aria-hidden="true" />
         {t("portfolio.live")}
       </p>
-      <h3 className="mt-2 font-sans font-bold text-ink tracking-[-0.02em] text-[clamp(1.7rem,3vw,2.3rem)] leading-tight">
+      <h3 className="mt-2 font-display font-bold text-fg tracking-[-0.02em] text-[clamp(1.4rem,2.4vw,1.85rem)] leading-tight">
         {project.title}
       </h3>
-      <p className="mt-3 text-ink/80 leading-[1.65] max-w-[32rem]">
+      <p className="mt-3 text-fg/80 leading-[1.65] max-w-[32rem]">
         {t(`portfolio.projects.${project.descriptionKey}`)}
       </p>
       <div className="mt-4">
@@ -48,7 +48,7 @@ const ClientProject = ({ project, t }) => (
       rel="noreferrer"
       tabIndex={-1}
       aria-hidden="true"
-      className="block rounded-lg overflow-hidden border border-line bg-white shadow-[0_18px_40px_-24px_rgba(23,33,43,0.45)]"
+      className="block rounded-lg overflow-hidden border border-line bg-surface"
     >
       <img src={project.src} alt="" loading="lazy" className="w-full aspect-video object-cover" />
     </a>
@@ -58,7 +58,7 @@ const ClientProject = ({ project, t }) => (
 const OtherProject = ({ project, t }) => (
   <li className="py-6 border-t border-line">
     <div className="flex items-baseline justify-between gap-4">
-      <h4 className="font-sans text-[1.15rem] font-bold text-ink">{project.title}</h4>
+      <h4 className="font-display text-[1.05rem] font-bold text-fg">{project.title}</h4>
       <a
         href={project.href}
         target="_blank"
@@ -70,7 +70,7 @@ const OtherProject = ({ project, t }) => (
         <span className="sr-only">: {project.title}</span>
       </a>
     </div>
-    <p className="mt-2 text-ink/80 leading-[1.6]">{t(`portfolio.projects.${project.descriptionKey}`)}</p>
+    <p className="mt-2 text-fg/80 leading-[1.6]">{t(`portfolio.projects.${project.descriptionKey}`)}</p>
     <div className="mt-3">
       <TechList tech={project.tech} />
     </div>
@@ -95,7 +95,7 @@ const Portfolio = () => {
         </div>
 
         <div className="mt-16 md:mt-20">
-          <h3 className="font-sans font-bold text-ink text-[1.6rem] tracking-[-0.01em]">
+          <h3 className="font-display font-bold text-fg text-[1.35rem] tracking-[-0.01em]">
             {t("portfolio.otherTitle")}
           </h3>
           <p className="mt-2 text-muted max-w-[36rem]">{t("portfolio.otherDescription")}</p>

@@ -6,8 +6,8 @@ import { useResumeModal } from "../context/ResumeModalContext";
 import { contactLinks, EMAIL } from "../data/contactLinks";
 
 const inputClass = (hasError) =>
-  `w-full bg-white border rounded-md px-4 py-3 text-ink placeholder-muted/70 transition-colors focus:outline-none focus:ring-2 focus:ring-cobalt/30 ${
-    hasError ? "border-red-700 focus:border-red-700" : "border-line focus:border-cobalt"
+  `w-full bg-canvas border rounded-md px-4 py-3 text-fg placeholder-muted/60 transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 ${
+    hasError ? "border-danger focus:border-danger" : "border-line focus:border-accent"
   }`;
 
 const Contact = () => {
@@ -25,12 +25,12 @@ const Contact = () => {
 
   const Field = ({ id, name, label, children }) => (
     <div>
-      <label htmlFor={id} className="block font-sans font-semibold text-ink mb-1.5">
+      <label htmlFor={id} className="block font-sans font-semibold text-fg mb-1.5">
         {label}
       </label>
       {children}
       {formErrors[name] && (
-        <p role="alert" id={`${id}-error`} className="mt-1.5 font-sans text-sm text-red-700">
+        <p role="alert" id={`${id}-error`} className="mt-1.5 font-sans text-sm text-danger">
           {t(`contact.errors.${name}`)}
         </p>
       )}
@@ -38,11 +38,11 @@ const Contact = () => {
   );
 
   return (
-    <section name="contact" className="border-t border-line bg-white">
+    <section name="contact" className="border-t border-line bg-surface">
       <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-20 md:py-28 grid gap-12 md:grid-cols-[minmax(0,380px)_1fr]">
         <div>
           <h2 className="section-title">{t("contact.title")}</h2>
-          <p className="mt-4 text-ink/80 leading-[1.65]">{t("contact.subtitle")}</p>
+          <p className="mt-4 text-fg/80 leading-[1.65]">{t("contact.subtitle")}</p>
           <p className="mt-6">
             <a href={`mailto:${EMAIL}`} className="font-sans font-semibold text-link break-all">
               {EMAIL}
@@ -51,13 +51,13 @@ const Contact = () => {
           <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-sans font-medium">
             {contactLinks.map(({ label, href }) => (
               <li key={label}>
-                <a href={href} target="_blank" rel="noreferrer" className="text-ink hover:text-cobalt">
+                <a href={href} target="_blank" rel="noreferrer" className="text-fg hover:text-accent">
                   {label}
                 </a>
               </li>
             ))}
             <li>
-              <button onClick={openResume} className="text-ink hover:text-cobalt">
+              <button onClick={openResume} className="text-fg hover:text-accent">
                 {t("contact.resume")}
               </button>
             </li>

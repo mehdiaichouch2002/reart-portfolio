@@ -4,7 +4,6 @@ import { Link } from "react-scroll";
 import navLinks from "../data/navLinks";
 import useScrolled from "../hooks/useScrolled";
 import { useLanguage } from "../context/LanguageContext";
-import { StarMark } from "./common/ZelligeStar";
 
 const NAV_HEIGHT = 72;
 const LANGUAGES = ["en", "fr"];
@@ -18,10 +17,9 @@ const Wordmark = ({ onClick }) => (
     duration={500}
     onClick={onClick}
     href="#home"
-    className="flex items-center gap-2.5 cursor-pointer select-none text-ink"
+    className="cursor-pointer select-none text-fg font-display font-bold text-[1.05rem] tracking-[-0.01em]"
   >
-    <StarMark className="w-6 h-6 text-cobalt" />
-    <span className="font-sans font-bold text-lg tracking-[-0.01em]">Mehdi Aichouch</span>
+    Mehdi Aichouch
   </Link>
 );
 
@@ -36,7 +34,7 @@ const LanguageSwitch = () => {
           aria-label={code.toUpperCase()}
           aria-pressed={lang === code}
           className={`px-2 py-1 rounded text-xs font-semibold transition-colors ${
-            lang === code ? "bg-ink text-paper" : "text-muted hover:text-ink"
+            lang === code ? "bg-fg text-canvas" : "text-muted hover:text-fg"
           }`}
         >
           {code.toUpperCase()}
@@ -92,8 +90,8 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 inset-x-0 z-50 h-[72px] bg-paper/90 backdrop-blur-md transition-shadow duration-300 ${
-          scrolled ? "shadow-[0_1px_0_#D9E0E3]" : ""
+        className={`fixed top-0 inset-x-0 z-50 h-[72px] bg-canvas/90 backdrop-blur-md transition-colors duration-300 ${
+          scrolled ? "border-b border-line" : "border-b border-transparent"
         }`}
       >
         <div className="max-w-[1120px] h-full mx-auto px-4 sm:px-6 flex items-center justify-between">
@@ -112,8 +110,8 @@ const NavBar = () => {
                     aria-current={activeSection === link ? "true" : undefined}
                     className={`font-sans font-medium cursor-pointer transition-colors border-b-2 pb-0.5 ${
                       activeSection === link
-                        ? "text-ink border-cobalt"
-                        : "text-muted border-transparent hover:text-ink"
+                        ? "text-fg border-accent"
+                        : "text-muted border-transparent hover:text-fg"
                     }`}
                   >
                     {t(`nav.${link}`)}
@@ -128,7 +126,7 @@ const NavBar = () => {
             <LanguageSwitch />
             <button
               onClick={() => setNav(true)}
-              className="p-2 text-ink"
+              className="p-2 text-fg"
               aria-label="Open menu"
               aria-expanded={nav}
             >
@@ -140,21 +138,21 @@ const NavBar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 bg-ink/40 z-[60] md:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/60 z-[60] md:hidden transition-opacity duration-300 ${
           nav ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeNav}
         aria-hidden="true"
       />
       <div
-        className={`fixed top-0 right-0 w-[280px] max-w-[85vw] h-full bg-paper z-[70] md:hidden transform transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 w-[280px] max-w-[85vw] h-full bg-surface z-[70] md:hidden transform transition-transform duration-300 ease-out ${
           nav ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!nav}
       >
         <div className="flex items-center justify-between h-[72px] px-5 border-b border-line">
-          <StarMark className="w-6 h-6 text-cobalt" />
-          <button onClick={closeNav} className="p-2 text-ink" aria-label="Close menu" tabIndex={nav ? 0 : -1}>
+          <span className="font-display font-bold text-fg">Menu</span>
+          <button onClick={closeNav} className="p-2 text-fg" aria-label="Close menu" tabIndex={nav ? 0 : -1}>
             <FaTimes size={20} />
           </button>
         </div>
@@ -170,7 +168,7 @@ const NavBar = () => {
                 onClick={closeNav}
                 tabIndex={nav ? 0 : -1}
                 className={`block px-3 py-3 rounded-md font-sans text-lg font-medium cursor-pointer ${
-                  activeSection === link ? "text-cobalt" : "text-ink hover:bg-line/50"
+                  activeSection === link ? "text-accent" : "text-fg hover:bg-line/50"
                 }`}
               >
                 {t(`nav.${link}`)}

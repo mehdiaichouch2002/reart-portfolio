@@ -11,12 +11,12 @@ const Notification = ({ type, onClose, successMsg, errorMsg }) => (
   >
     {type && (
       <div
-        className={`flex items-start justify-between gap-4 px-4 py-3 rounded-md shadow-lg font-sans text-white ${
-          type === "success" ? "bg-zellige" : "bg-red-700"
+        className={`flex items-start justify-between gap-4 px-4 py-3 rounded-md shadow-lg text-canvas ${
+          type === "success" ? "bg-live" : "bg-danger"
         }`}
       >
         <span className="font-medium">{type === "success" ? successMsg : errorMsg}</span>
-        <button onClick={onClose} className="text-white/80 hover:text-white" aria-label="Close notification">
+        <button onClick={onClose} className="text-canvas/70 hover:text-canvas" aria-label="Close notification">
           <FiX size={18} />
         </button>
       </div>

@@ -43,7 +43,7 @@ const ResumeLanguageModal = () => {
 
   return (
     <div
-      className="fixed inset-0 bg-ink/50 flex items-center justify-center z-[80] p-4"
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-[80] p-4"
       onClick={close}
     >
       <div
@@ -52,14 +52,14 @@ const ResumeLanguageModal = () => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="resume-title"
-        className="relative bg-paper rounded-lg p-6 sm:p-8 max-w-md w-full max-h-[90dvh] overflow-y-auto shadow-2xl focus:outline-none"
+        className="relative bg-surface border border-line rounded-lg p-6 sm:p-8 max-w-md w-full max-h-[90dvh] overflow-y-auto shadow-2xl focus:outline-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <button onClick={close} className="absolute top-4 right-4 p-1.5 text-muted hover:text-ink" aria-label={t("resumeModal.cancel")}>
+        <button onClick={close} className="absolute top-4 right-4 p-1.5 text-muted hover:text-fg" aria-label={t("resumeModal.cancel")}>
           <FiX size={20} />
         </button>
 
-        <h2 id="resume-title" className="font-sans text-2xl font-bold text-ink">
+        <h2 id="resume-title" className="font-display text-2xl font-bold text-fg">
           {t("resumeModal.title")}
         </h2>
         <p className="mt-1 text-muted">{t("resumeModal.subtitle")}</p>
@@ -67,7 +67,7 @@ const ResumeLanguageModal = () => {
         <div
           role="radiogroup"
           aria-label={t("resumeModal.roleLabel")}
-          className="mt-6 grid grid-cols-2 gap-1 p-1 bg-white rounded-md border border-line"
+          className="mt-6 grid grid-cols-2 gap-1 p-1 bg-canvas rounded-md border border-line"
         >
           {ROLES.map((r) => (
             <button
@@ -76,7 +76,7 @@ const ResumeLanguageModal = () => {
               aria-checked={role === r}
               onClick={() => setRole(r)}
               className={`py-2 px-3 rounded font-semibold transition-colors ${
-                role === r ? "bg-ink text-paper" : "text-muted hover:text-ink"
+                role === r ? "bg-fg text-canvas" : "text-muted hover:text-fg"
               }`}
             >
               {t(`resumeModal.${r}`)}

@@ -15,7 +15,7 @@ function App() {
     <LanguageProvider>
       <ResumeModalProvider>
         <div>
-          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded-md font-sans">
+          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:bg-fg focus:text-canvas focus:px-4 focus:py-2 focus:rounded-md font-sans">
             Skip to content
           </a>
           <NavBar />

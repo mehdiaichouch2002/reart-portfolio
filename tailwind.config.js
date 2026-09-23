@@ -6,17 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        paper: "#F3F5F4", // cool lime-plaster wall
-        ink: "#17212B",
-        muted: "#56626E",
-        line: "#D9E0E3",
-        cobalt: { DEFAULT: "#1D4E9E", dark: "#153B79", tint: "#E4EBF5" }, // Fez pottery blue
-        zellige: "#1F7A5C", // Fez green tile, used only for "live" status
-        brass: "#B08A3E",
+        canvas: "#0E0F12", // graphite page background
+        surface: "#17191E", // raised panels, inputs, contact band
+        fg: "#ECEEF2",
+        muted: "#8A909C",
+        line: "#262A31",
+        accent: { DEFAULT: "#7AA2FF", hover: "#9BB8FF", tint: "rgba(122,162,255,0.12)" },
+        live: "#7EE0B8", // only for "live store" status
+        danger: "#FF8A80",
       },
       fontFamily: {
-        sans: ['"Bricolage Grotesque"', "ui-sans-serif", "system-ui", "sans-serif"],
-        serif: ['"Source Serif 4"', "Georgia", "serif"],
+        display: ['"Syne"', "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ['"Instrument Sans"', "ui-sans-serif", "system-ui", "sans-serif"],
       },
       screens: {
         xs: "420px",
