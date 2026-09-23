@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaFile } from "react-icons/fa";
 import { useResumeModal } from "../../context/ResumeModalContext";
 import { useLanguage } from "../../context/LanguageContext";
 
+// Files live in public/ as MEHDI-AICHOUCH-<ROLE>-<LANG>.pdf
+const ROLES = ["fullstack", "magento2"];
+
 const ResumeLanguageModal = () => {
   const { isOpen, close } = useResumeModal();
   const { t } = useLanguage();
+  const [role, setRole] = useState(ROLES[0]);
 
   const handleDownload = (language) => {
-    const resumeUrl =
-      language === "en" ? "/MEHDI-AICHOUCH-EN.pdf" : "/MEHDI-AICHOUCH-FR.pdf";
+    const fileName = `MEHDI-AICHOUCH-${role.toUpperCase()}-${language.toUpperCase()}.pdf`;
     const link = document.createElement("a");
-    link.href = resumeUrl;
-    link.download = `MEHDI-AICHOUCH-${language.toUpperCase()}.pdf`;
+    link.href = `/${fileName}`;
+    link.download = fileName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -52,6 +55,28 @@ const ResumeLanguageModal = () => {
             {t("resumeModal.title")}
           </h2>
           <p className="text-gray-400">{t("resumeModal.subtitle")}</p>
+        </div>
+
+        <div
+          role="radiogroup"
+          aria-label={t("resumeModal.subtitle")}
+          className="grid grid-cols-2 gap-1 p-1 mb-4 bg-gray-900/80 rounded-lg border border-gray-700"
+        >
+          {ROLES.map((r) => (
+            <button
+              key={r}
+              role="radio"
+              aria-checked={role === r}
+              onClick={() => setRole(r)}
+              className={`py-2 px-3 rounded-md font-semibold transition-all duration-300 ${
+                role === r
+                  ? "bg-cyan-500 text-white shadow"
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              {t(`resumeModal.${r}`)}
+            </button>
+          ))}
         </div>
 
         <div className="space-y-3">
