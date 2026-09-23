@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Portfolio from "./components/Portfolio";
 import Contact from "./components/Contact";
-import SocialLinks from "./components/SocialLinks";
 import Footer from "./components/Footer";
 import { ResumeModalProvider } from "./context/ResumeModalContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -16,13 +15,17 @@ function App() {
     <LanguageProvider>
       <ResumeModalProvider>
         <div>
+          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[90] focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded-md font-sans">
+            Skip to content
+          </a>
           <NavBar />
-          <Home />
-          <About />
-          <Portfolio />
-          <Skills />
-          <Contact />
-          <SocialLinks />
+          <main id="main">
+            <Home />
+            <About />
+            <Portfolio />
+            <Skills />
+            <Contact />
+          </main>
           <Footer />
         </div>
         <ResumeLanguageModal />

@@ -1,44 +1,45 @@
-import React from "react";
-import { motion } from "framer-motion";
-import TimelineItem from "./TimelineItem";
 import { useLanguage } from "../context/LanguageContext";
+
+// Titles are stored as "Organisation — role"
+const splitTitle = (title) => {
+  const [org, ...rest] = title.split(" — ");
+  return rest.length ? { org, role: rest.join(" — ") } : { org: title, role: null };
+};
 
 const About = () => {
   const { t } = useLanguage();
   const timelineEvents = t("timeline");
 
   return (
-    <section
-      name="about"
-      className="py-20 bg-gradient-to-b from-gray-800 to-black text-white"
-    >
-      <div className="max-w-4xl px-6 md:px-4 mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-2xl md:text-3xl font-extrabold inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pb-2 border-b-2 border-cyan-400">
-            {t("about.title")}
-          </h2>
-        </motion.div>
-
-        <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-[1.5px] bg-gradient-to-b from-cyan-400/40 via-cyan-400/20 to-transparent hidden md:block" />
-
-          <div className="relative space-y-4 md:space-y-6">
-            {timelineEvents.map((item, index) => (
-              <TimelineItem
-                key={index}
-                {...item}
-                index={index}
-                isLeft={item.type === "right"}
-              />
-            ))}
-          </div>
+    <section name="about" className="border-t border-line">
+      <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-20 md:py-28 grid gap-10 md:grid-cols-[minmax(0,280px)_1fr]">
+        <div className="md:sticky md:top-24 md:self-start">
+          <h2 className="section-title">{t("about.title")}</h2>
+          <p className="mt-4 text-muted leading-relaxed max-w-[22rem]">{t("about.intro")}</p>
         </div>
+
+        <ol className="relative border-l-2 border-line ml-1.5">
+          {timelineEvents.map((item) => {
+            const { org, role } = splitTitle(item.title);
+            const current = /present|in progress|aujourd|en cours/i.test(item.date);
+            return (
+              <li key={item.title} className="relative pl-7 sm:pl-9 pb-10 last:pb-0">
+                <span
+                  className={`absolute -left-[7px] top-[0.45rem] w-3 h-3 rotate-45 ${
+                    current ? "bg-cobalt" : "bg-paper border-2 border-line"
+                  }`}
+                  aria-hidden="true"
+                />
+                <p className="font-sans text-sm font-semibold text-muted tabular-nums">{item.date}</p>
+                <h3 className="mt-1 font-sans text-[1.3rem] font-bold text-ink leading-snug">
+                  {org}
+                </h3>
+                {role && <p className="font-sans font-medium text-cobalt">{role}</p>}
+                <p className="mt-2 text-ink/80 leading-[1.65] max-w-[40rem]">{item.description}</p>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );

@@ -1,161 +1,123 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import projects from "../data/projects";
-import ProjectCard from "./ProjectCard";
 import { useLanguage } from "../context/LanguageContext";
 
-const CATEGORIES = ["all", "commercial", "opensource", "personal"];
+const clientWork = projects.filter((p) => p.category === "commercial");
+// Magento modules first: they're closest to the client work above
+const isMagento = (p) => p.tech.includes("Magento 2");
+const otherWork = projects
+  .filter((p) => p.category !== "commercial")
+  .sort((a, b) => isMagento(b) - isMagento(a));
 const INITIAL_VISIBLE = 6;
+const hostname = (url) => new URL(url).hostname.replace(/^www\./, "");
+
+const TechList = ({ tech }) => (
+  <ul className="flex flex-wrap gap-x-4 gap-y-1 font-sans text-sm text-muted">
+    {tech.map((name) => (
+      <li key={name}>{name}</li>
+    ))}
+  </ul>
+);
+
+const ClientProject = ({ project, t }) => (
+  <article className="grid gap-6 md:gap-10 md:grid-cols-[1fr_1.15fr] items-center py-10 md:py-14 border-t border-line first:border-t-0 first:pt-4">
+    <div>
+      <p className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-zellige">
+        <span className="w-2 h-2 rounded-full bg-zellige" aria-hidden="true" />
+        {t("portfolio.live")}
+      </p>
+      <h3 className="mt-2 font-sans font-bold text-ink tracking-[-0.02em] text-[clamp(1.7rem,3vw,2.3rem)] leading-tight">
+        {project.title}
+      </h3>
+      <p className="mt-3 text-ink/80 leading-[1.65] max-w-[32rem]">
+        {t(`portfolio.projects.${project.descriptionKey}`)}
+      </p>
+      <div className="mt-4">
+        <TechList tech={project.tech} />
+      </div>
+      <a href={project.href} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-1 font-sans font-semibold text-link">
+        {hostname(project.href)}
+        <FiArrowUpRight aria-hidden="true" />
+        <span className="sr-only">({t("portfolio.opensNewTab")})</span>
+      </a>
+    </div>
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noreferrer"
+      tabIndex={-1}
+      aria-hidden="true"
+      className="block rounded-lg overflow-hidden border border-line bg-white shadow-[0_18px_40px_-24px_rgba(23,33,43,0.45)]"
+    >
+      <img src={project.src} alt="" loading="lazy" className="w-full aspect-video object-cover" />
+    </a>
+  </article>
+);
+
+const OtherProject = ({ project, t }) => (
+  <li className="py-6 border-t border-line">
+    <div className="flex items-baseline justify-between gap-4">
+      <h4 className="font-sans text-[1.15rem] font-bold text-ink">{project.title}</h4>
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noreferrer"
+        className="shrink-0 inline-flex items-center gap-1.5 font-sans text-sm font-semibold text-link"
+      >
+        <FiGithub aria-hidden="true" />
+        {t("portfolio.viewCode")}
+        <span className="sr-only">: {project.title}</span>
+      </a>
+    </div>
+    <p className="mt-2 text-ink/80 leading-[1.6]">{t(`portfolio.projects.${project.descriptionKey}`)}</p>
+    <div className="mt-3">
+      <TechList tech={project.tech} />
+    </div>
+  </li>
+);
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState("all");
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [expanded, setExpanded] = useState(false);
   const { t } = useLanguage();
-
-  const filtered =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
-
-  const visible = filtered.slice(0, visibleCount);
-  const remaining = filtered.length - visibleCount;
-  const isExpanded = visibleCount > INITIAL_VISIBLE;
-
-  const handleFilterChange = (cat) => {
-    setFilter(cat);
-    setVisibleCount(INITIAL_VISIBLE);
-  };
-
-  const countFor = (cat) =>
-    cat === "all" ? projects.length : projects.filter((p) => p.category === cat).length;
+  const visible = expanded ? otherWork : otherWork.slice(0, INITIAL_VISIBLE);
 
   return (
-    <div name="portfolio" className="bg-gradient-to-b from-black to-gray-800 py-20">
-      <div className="max-w-6xl mx-auto px-4">
+    <section name="portfolio" className="border-t border-line">
+      <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-20 md:py-28">
+        <h2 className="section-title">{t("portfolio.title")}</h2>
+        <p className="mt-4 text-muted leading-relaxed max-w-[36rem]">{t("portfolio.description")}</p>
 
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
-          <h2 className="text-2xl md:text-3xl font-extrabold inline-block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent pb-2 border-b-2 border-cyan-400">
-            {t("portfolio.title")}
-          </h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            {t("portfolio.description")}
-          </p>
-        </motion.div>
-
-        {/* Filter buttons */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => handleFilterChange(cat)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === cat
-                  ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/25"
-                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200 border border-gray-700"
-              }`}
-            >
-              {t(`portfolio.categories.${cat}`)}
-              <span
-                className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
-                  filter === cat
-                    ? "bg-white/20 text-white"
-                    : "bg-gray-700 text-gray-400"
-                }`}
-              >
-                {countFor(cat)}
-              </span>
-            </button>
+        <div className="mt-8">
+          {clientWork.map((project) => (
+            <ClientProject key={project.id} project={project} t={t} />
           ))}
         </div>
 
-        {/* Grid */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {visible.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 12, scale: 0.97 }}
-                transition={{ delay: i < INITIAL_VISIBLE ? i * 0.07 : (i - (visibleCount - remaining)) * 0.06, duration: 0.35, ease: "easeOut" }}
-              >
-                <ProjectCard
-                  project={{
-                    ...project,
-                    description: t(`portfolio.projects.${project.descriptionKey}`),
-                    viewLabel: t(project.hosted ? "portfolio.viewLive" : "portfolio.viewCode"),
-                  }}
-                />
-              </motion.div>
+        <div className="mt-16 md:mt-20">
+          <h3 className="font-sans font-bold text-ink text-[1.6rem] tracking-[-0.01em]">
+            {t("portfolio.otherTitle")}
+          </h3>
+          <p className="mt-2 text-muted max-w-[36rem]">{t("portfolio.otherDescription")}</p>
+          <ul className="mt-6 grid md:grid-cols-2 md:gap-x-12">
+            {visible.map((project) => (
+              <OtherProject key={project.id} project={project} t={t} />
             ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Show more / Show less */}
-        <AnimatePresence mode="wait">
-          {(remaining > 0 || isExpanded) && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
-              className="flex justify-center mt-12"
+          </ul>
+          {otherWork.length > INITIAL_VISIBLE && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+              className="btn-secondary mt-8"
             >
-              <button
-                onClick={() =>
-                  isExpanded
-                    ? setVisibleCount(INITIAL_VISIBLE)
-                    : setVisibleCount((c) => c + remaining)
-                }
-                className="group relative flex items-center gap-2.5 px-7 py-3 rounded-full text-sm font-semibold text-white overflow-hidden border border-cyan-500/40 hover:border-cyan-400/70 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
-              >
-                {/* Animated background */}
-                <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-cyan-400/10 group-hover:from-cyan-500/20 group-hover:to-cyan-400/20 transition-all duration-300" />
-                <span className="relative flex items-center gap-2.5">
-                  {isExpanded ? (
-                    <>
-                      {t("portfolio.showLess")}
-                      <motion.span
-                        key="up"
-                        initial={{ rotate: 180, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <FiChevronUp size={16} className="text-cyan-400" />
-                      </motion.span>
-                    </>
-                  ) : (
-                    <>
-                      {remaining} {t("portfolio.showMore")}
-                      <motion.span
-                        key="down"
-                        initial={{ rotate: -180, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                        className="group-hover:translate-y-0.5 transition-transform duration-300"
-                      >
-                        <FiChevronDown size={16} className="text-cyan-400" />
-                      </motion.span>
-                    </>
-                  )}
-                </span>
-              </button>
-            </motion.div>
+              {expanded
+                ? t("portfolio.showLess")
+                : t("portfolio.showAll").replace("{count}", otherWork.length)}
+            </button>
           )}
-        </AnimatePresence>
-
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

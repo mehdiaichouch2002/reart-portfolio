@@ -11,8 +11,9 @@ const useChat = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, streaming]);
 
-  const sendMessage = useCallback(async () => {
-    const text = input.trim();
+  // Accepts an optional text (e.g. a suggested question); otherwise sends the input
+  const sendMessage = useCallback(async (override) => {
+    const text = (typeof override === "string" ? override : input).trim();
     if (!text || streaming) return;
     setInput("");
 

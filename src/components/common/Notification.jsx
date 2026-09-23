@@ -1,40 +1,26 @@
 import React from "react";
+import { FiX } from "react-icons/fi";
 
 const Notification = ({ type, onClose, successMsg, errorMsg }) => (
   <div
-    className={`fixed top-20 left-0 right-0 mx-auto max-w-md z-50 transform transition-all duration-500 ease-in-out ${
-      type ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+    role="status"
+    aria-live="polite"
+    className={`fixed top-20 inset-x-0 mx-auto max-w-md z-50 px-4 transition-all duration-300 ${
+      type ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0 pointer-events-none"
     }`}
   >
-    <div
-      className={`flex items-center justify-between px-4 py-3 rounded-lg mx-4 shadow-lg ${
-        type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
-      }`}
-    >
-      <span className="font-medium">
-        {type === "success" ? successMsg : errorMsg}
-      </span>
-      <button
-        onClick={onClose}
-        className="ml-4 text-white/80 hover:text-white transition-colors bg-transparent border-none"
-        aria-label="Close notification"
+    {type && (
+      <div
+        className={`flex items-start justify-between gap-4 px-4 py-3 rounded-md shadow-lg font-sans text-white ${
+          type === "success" ? "bg-zellige" : "bg-red-700"
+        }`}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
+        <span className="font-medium">{type === "success" ? successMsg : errorMsg}</span>
+        <button onClick={onClose} className="text-white/80 hover:text-white" aria-label="Close notification">
+          <FiX size={18} />
+        </button>
+      </div>
+    )}
   </div>
 );
 

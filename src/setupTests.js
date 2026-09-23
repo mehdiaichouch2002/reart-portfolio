@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-// jsdom doesn't implement these browser APIs used by react-slick,
+// jsdom doesn't implement these browser APIs used by
 // framer-motion and react-scroll
 window.matchMedia =
   window.matchMedia ||
