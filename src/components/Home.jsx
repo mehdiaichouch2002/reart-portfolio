@@ -59,11 +59,10 @@ const Home = () => {
             <img
               src={heroImg}
               alt={t("home.photoAlt")}
-              className="block w-full aspect-[4/5] object-cover object-top grayscale-[40%] brightness-[0.72] contrast-[1.1]"
+              className="block w-full aspect-[4/5] object-cover object-top brightness-[0.88]"
             />
-            {/* Cool tint and a fade into the page so the studio backdrop doesn't glare */}
-            <div className="absolute inset-0 bg-[#7AA2FF]/10 mix-blend-color" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-canvas/80" aria-hidden="true" />
+            {/* Fade the bottom into the page so the light studio backdrop doesn't end in a hard edge */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent from-60% to-canvas/70" aria-hidden="true" />
           </div>
         </div>
       </div>
