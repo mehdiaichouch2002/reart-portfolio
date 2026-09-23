@@ -44,7 +44,16 @@ Rules:
 - Never fabricate information not listed above`;
 
 const API_KEY = process.env.REACT_APP_OPENROUTER_API_KEY;
-const MODEL = "nvidia/nemotron-3-nano-30b-a3b:free";
+
+// Free models are often rate-limited (429) or retired without notice, so we try
+// them in order. "openrouter/free" routes to whichever free model is up, and is
+// tried twice because it may pick a different model on the second call.
+const MODELS = [
+  "openrouter/free",
+  "google/gemma-4-31b-it:free",
+  "nex-agi/nex-n2.5-pro:free",
+  "openrouter/free",
+];
 
 function parseErrorMessage(body) {
   try {
@@ -60,10 +69,8 @@ function parseErrorMessage(body) {
   }
 }
 
-export async function* streamChatResponse(messages) {
-  if (!API_KEY) throw new Error("Missing REACT_APP_OPENROUTER_API_KEY in .env");
-
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+function requestCompletion(model, messages) {
+  return fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
@@ -72,27 +79,25 @@ export async function* streamChatResponse(messages) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: MODEL,
+      model,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       stream: true,
-      max_tokens: 400,
+      max_tokens: 800,
     }),
   });
+}
 
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(parseErrorMessage(body));
-  }
-
+async function* readStream(response) {
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
 
   while (true) {
     const { done, value } = await reader.read();
-    if (done) break;
+    if (done) return;
     buffer += decoder.decode(value, { stream: true });
-    const lines = buffer.split("\n");
+    const lines = buffer.split("
+");
     buffer = lines.pop();
 
     for (const line of lines) {
@@ -100,16 +105,45 @@ export async function* streamChatResponse(messages) {
       const data = line.slice(6).trim();
       if (data === "[DONE]") return;
 
+      let parsed;
       try {
-        const parsed = JSON.parse(data);
-        // OpenRouter can embed errors inside the stream
-        if (parsed.error) throw new Error(parseErrorMessage(JSON.stringify(parsed)));
-        const text = parsed.choices?.[0]?.delta?.content;
-        if (text) yield text;
-      } catch (e) {
-        if (e.message !== "rate_limit") throw e;
-        throw e;
+        parsed = JSON.parse(data);
+      } catch {
+        continue; // skip malformed chunks instead of aborting the whole stream
       }
+      // OpenRouter can embed errors inside the stream
+      if (parsed.error) throw new Error(parseErrorMessage(JSON.stringify(parsed)));
+      const text = parsed.choices?.[0]?.delta?.content;
+      if (text) yield text;
     }
   }
+}
+
+export async function* streamChatResponse(messages) {
+  if (!API_KEY) throw new Error("Missing REACT_APP_OPENROUTER_API_KEY in .env");
+
+  let lastError = new Error("No model returned a response");
+
+  for (const model of MODELS) {
+    let yielded = false;
+    try {
+      const response = await requestCompletion(model, messages);
+      if (!response.ok) {
+        throw new Error(parseErrorMessage(await response.text()));
+      }
+      for await (const text of readStream(response)) {
+        yielded = true;
+        yield text;
+      }
+      if (yielded) return;
+      lastError = new Error(`Empty response from ${model}`);
+    } catch (e) {
+      // Once text has reached the UI we can't switch models mid-answer
+      if (yielded) throw e;
+      lastError = e;
+    }
+    console.warn(`[AI chat] ${model} failed, trying next model:`, lastError.message);
+  }
+
+  throw lastError;
 }

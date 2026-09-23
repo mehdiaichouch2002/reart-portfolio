@@ -32,7 +32,9 @@ const useChat = () => {
           { role: "assistant", content: accumulated },
         ]);
       }
+      if (!accumulated) throw new Error("Empty response from model");
     } catch (err) {
+      console.error("[AI chat]", err);
       const isRateLimit = err.message === "rate_limit";
       setMessages([
         ...apiMessages,
