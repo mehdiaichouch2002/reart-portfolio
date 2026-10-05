@@ -4,6 +4,7 @@ import { Link } from "react-scroll";
 import navLinks from "../data/navLinks";
 import useScrolled from "../hooks/useScrolled";
 import { useLanguage } from "../context/LanguageContext";
+import ScrollProgress from "./common/ScrollProgress";
 
 const NAV_HEIGHT = 72;
 const LANGUAGES = ["en", "fr"];
@@ -94,6 +95,7 @@ const NavBar = () => {
           scrolled ? "border-b border-line" : "border-b border-transparent"
         }`}
       >
+        <ScrollProgress />
         <div className="max-w-[1120px] h-full mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Wordmark />
 

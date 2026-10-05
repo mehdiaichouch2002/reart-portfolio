@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, within } from "@testing-library/react";
+import { render, screen, fireEvent, within, act } from "@testing-library/react";
+import ScrollProgress from "./components/common/ScrollProgress";
 import App from "./App";
 
 describe("App smoke test", () => {
@@ -114,5 +115,28 @@ describe("Contact form validation", () => {
     });
 
     expect(screen.queryByText(/enter your name/i)).not.toBeInTheDocument();
+  });
+});
+
+describe("Scroll progress line", () => {
+  test("grows when scrolling down and shrinks when scrolling back up", async () => {
+    Object.defineProperty(document.documentElement, "scrollHeight", { configurable: true, value: 3000 });
+    Object.defineProperty(window, "innerHeight", { configurable: true, value: 1000 });
+    const { container } = render(<ScrollProgress />);
+    const bar = container.querySelector("[aria-hidden] > div");
+    const scrollTo = async (y) => {
+      window.scrollY = y;
+      await act(async () => {
+        window.dispatchEvent(new Event("scroll"));
+        await new Promise((r) => requestAnimationFrame(r));
+      });
+    };
+
+    await scrollTo(1000);
+    expect(bar.style.transform).toBe("scaleX(0.5)");
+    await scrollTo(2000);
+    expect(bar.style.transform).toBe("scaleX(1)");
+    await scrollTo(500);
+    expect(bar.style.transform).toBe("scaleX(0.25)");
   });
 });
