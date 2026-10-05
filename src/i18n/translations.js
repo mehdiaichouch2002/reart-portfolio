@@ -10,7 +10,8 @@ const translations = {
     home: {
       headline: "I build Magento 2 stores for European brands.",
       description:
-        "Full-stack developer at Morocommerce in Fez, Morocco. I work in PHP, JavaScript and React, from custom Magento modules to the storefront.",
+        "Full-stack developer with three years on the Magento 2 platforms of Carhartt WIP, Anita and Edwin Europe. I work in PHP, Laravel and React, from REST APIs and integrations to fast Hyvä storefronts.",
+      availability: "Available immediately · Based in Fès, Morocco",
       cta: "See my work",
       resume: "Download resume",
       liveStores: "Live stores I've worked on",
@@ -19,12 +20,16 @@ const translations = {
     about: {
       title: "Experience",
       intro:
-        "Since December 2023 I've been building Magento 2 stores at Morocommerce. I'm also finishing a bachelor's in web frameworks and Java EE at ENSA Fez.",
+        "Three years building Magento 2 and Laravel features end to end at Cartware / Morocommerce in Fès, backed by a Bac+3 university diploma in web frameworks and Java EE.",
+      educationTitle: "Education",
+      certificationTitle: "Certification",
     },
     portfolio: {
       title: "Work",
       description: "Client stores first, then open-source and personal projects.",
       live: "Live",
+      role: "My role",
+      clientRole: "Magento 2 developer (full-stack) at Cartware / Morocommerce",
       opensNewTab: "opens in a new tab",
       otherTitle: "Open-source and personal projects",
       otherDescription: "Magento modules, web apps and tools, with the source code on GitHub.",
@@ -32,9 +37,12 @@ const translations = {
       showAll: "Show all {count} projects",
       showLess: "Show fewer",
       projects: {
-        carhartt: "B2B wholesale store for Carhartt WIP's retail partners, built on Magento 2.",
-        anita: "Online store for the German lingerie and swimwear brand, built on Magento 2.",
-        edwin: "European online store for the Japanese denim brand, built on Magento 2.",
+        carhartt:
+          "B2B wholesale store for Carhartt WIP's retail partners. I designed the REST API layer for the digital asset integration (Amplience CDN), integrated Microsoft Entra ID single sign-on, and built B2B features: tiered pricing, catalogue permissions and inventory sync over REST.",
+        anita:
+          "Online store for the German lingerie and swimwear brand, on Magento 2.4. I built and maintained features end to end, from backend modules to the storefront.",
+        edwin:
+          "European online store for the Japanese denim brand, on Magento 2.4. I built features end to end and set up Apple Pay on Adyen.",
         freespace: "Application for managing spaces, written in PHP.",
         requestify: "Request management system built with Laravel.",
         portfolio: "This site: React, Tailwind CSS and an AI assistant that answers questions about my work.",
@@ -56,13 +64,16 @@ const translations = {
     },
     skills: {
       title: "Skills",
-      description: "Tools I use at work and in my own projects.",
+      description: "What I use day to day, grouped by area.",
       groups: {
-        commerce: "E-commerce",
         backend: "Backend",
         frontend: "Frontend",
-        tooling: "Databases and tooling",
+        apis: "APIs and auth",
+        data: "Data and performance",
+        devops: "DevOps",
+        languages: "Spoken languages",
       },
+      spoken: ["Arabic, native", "English, professional (B2)", "French, intermediate (B1)"],
     },
     contact: {
       title: "Contact",
@@ -104,49 +115,61 @@ const translations = {
       subtitle: "AI assistant that knows my resume",
       greeting: "Ask about my experience, projects or skills. The assistant answers from my resume.",
       suggestions: [
-        "What does Mehdi do at Morocommerce?",
+        "What did Mehdi build at Morocommerce?",
         "Which Magento projects has he worked on?",
         "What's his tech stack?",
       ],
       placeholder: "Ask a question",
       disclaimer: "AI answers can be wrong. Check the resume for details.",
     },
-    timeline: [
+    experience: [
       {
-        title: "ENSA Fez — Bachelor's in Web Frameworks & Java EE",
-        date: "2025 – 2026, in progress",
-        description:
-          "Advanced web frameworks, Java Enterprise Edition (JEE) and large-scale system development.",
+        org: "Cartware / Morocommerce, Fès",
+        role: "Magento 2 developer (full-stack)",
+        date: "Jan 2024 – Jul 2026",
+        points: [
+          "Built and maintained features end to end on three Magento 2.4 platforms (Carhartt WIP B2B, Anita, Edwin Europe) serving 50,000+ monthly users.",
+          "Cut product listing load time from 3.2s to 0.8s through Elasticsearch mapping, MySQL query and index tuning, and Redis and Varnish caching.",
+          "Delivered Hyvä storefronts with Alpine.js and Tailwind CSS: 40% faster page loads, Google PageSpeed consistently above 95.",
+          "Integrated Microsoft Entra ID single sign-on and designed the REST API layer for the Carhartt WIP digital asset integration.",
+          "Refactored 50,000+ lines of legacy code and stabilised Docker and CI/CD pipelines, cutting production bugs by 45%.",
+        ],
       },
       {
-        title: "Morocommerce, Fez — Magento developer",
-        date: "Dec 2023 – Present",
-        description:
-          "Develop and maintain Magento Commerce stores in PHP, JavaScript and TypeScript, including React-based front ends.",
+        org: "Cartware / Morocommerce, Fès",
+        role: "Laravel developer (internship)",
+        date: "Aug – Dec 2023",
+        points: [
+          "Built a full-stack internal management platform with Laravel 10 and Tailwind CSS, used daily by 25+ employees.",
+          "Implemented role-based access control and optimised the underlying queries, halving response times.",
+        ],
       },
       {
-        title: "Internship",
-        date: "Aug 2023 – Dec 2023",
-        description:
-          "Built a working HR application in PHP within one month, streamlining the company's HR processes.",
-      },
-      {
-        title: "ISTA Adarissa, Fez — Specialized technician in digital development",
-        date: "2021 – 2023",
-        description:
-          "Full-stack web development diploma covering React.js, Laravel, databases and other web technologies.",
-      },
-      {
-        title: "Faculty of Humanities, Fez — English studies",
-        date: "2020 – 2021",
-        description: "Built fluency in English and strengthened communication skills.",
-      },
-      {
-        title: "Ahmed Zaki Alaoui High School, Fez — High school diploma",
-        date: "2020",
-        description: "Foundational studies preparing for higher education.",
+        org: "Sidi Mohamed Ben Abdellah University, Fès",
+        role: "Web developer (internship)",
+        date: "Mar – Apr 2023",
+        points: [
+          "Built a PHP / MySQL HR app automating leave requests and payroll tracking, removing 70% of manual HR work.",
+        ],
       },
     ],
+    education: [
+      {
+        org: "ENSA Fès, Sidi Mohamed Ben Abdellah University",
+        degree: "University diploma (Bac+3) in Web Development Frameworks & Java EE",
+        note: "Graduated with highest honours (mention Très Bien). Java EE, Spring Boot, C# / .NET, software architecture.",
+      },
+      {
+        org: "ISTA Adarissa (OFPPT), Fès",
+        degree: "Specialised technician diploma in digital development",
+        note: "Full-stack web development: PHP, MySQL, JavaScript, OOP.",
+      },
+    ],
+    certification: {
+      name: "Adobe Commerce Developer Professional (AD0-E724)",
+      status: "In preparation",
+      note: "Magento 2.4.7 backend development, Adobe Commerce Cloud, checkout and sales flow.",
+    },
   },
 
   fr: {
@@ -160,7 +183,8 @@ const translations = {
     home: {
       headline: "Je développe des boutiques Magento 2 pour des marques européennes.",
       description:
-        "Développeur full-stack chez Morocommerce à Fès. Je travaille en PHP, JavaScript et React, des modules Magento sur mesure jusqu'à la vitrine en ligne.",
+        "Développeur full-stack avec trois ans d'expérience sur les plateformes Magento 2 de Carhartt WIP, Anita et Edwin Europe. Je travaille en PHP, Laravel et React, des API REST et intégrations jusqu'aux vitrines Hyvä rapides.",
+      availability: "Disponible immédiatement · Basé à Fès, Maroc",
       cta: "Voir mes projets",
       resume: "Télécharger le CV",
       liveStores: "Boutiques en ligne sur lesquelles j'ai travaillé",
@@ -169,12 +193,16 @@ const translations = {
     about: {
       title: "Parcours",
       intro:
-        "Depuis décembre 2023, je développe des boutiques Magento 2 chez Morocommerce. Je termine en parallèle une licence en frameworks web et Java EE à l'ENSA de Fès.",
+        "Trois ans à développer des fonctionnalités Magento 2 et Laravel de bout en bout chez Cartware / Morocommerce à Fès, avec un diplôme d'université Bac+3 en frameworks web et Java EE.",
+      educationTitle: "Formation",
+      certificationTitle: "Certification",
     },
     portfolio: {
       title: "Projets",
       description: "D'abord les boutiques clientes, puis les projets open source et personnels.",
       live: "En ligne",
+      role: "Mon rôle",
+      clientRole: "Développeur Magento 2 (full-stack) chez Cartware / Morocommerce",
       opensNewTab: "s'ouvre dans un nouvel onglet",
       otherTitle: "Projets open source et personnels",
       otherDescription: "Modules Magento, applications web et outils, avec le code source sur GitHub.",
@@ -182,9 +210,12 @@ const translations = {
       showAll: "Afficher les {count} projets",
       showLess: "Afficher moins",
       projects: {
-        carhartt: "Boutique B2B de vente en gros pour les revendeurs de Carhartt WIP, sous Magento 2.",
-        anita: "Boutique en ligne de la marque allemande de lingerie et de maillots de bain, sous Magento 2.",
-        edwin: "Boutique en ligne européenne de la marque de denim japonaise, sous Magento 2.",
+        carhartt:
+          "Boutique B2B de vente en gros pour les revendeurs de Carhartt WIP. J'ai conçu la couche API REST pour l'intégration des ressources numériques (CDN Amplience), intégré le SSO Microsoft Entra ID et développé des fonctionnalités B2B : prix par paliers, droits sur le catalogue et synchronisation des stocks via REST.",
+        anita:
+          "Boutique en ligne de la marque allemande de lingerie et de maillots de bain, sous Magento 2.4. J'ai développé et maintenu des fonctionnalités de bout en bout, des modules backend à la vitrine.",
+        edwin:
+          "Boutique en ligne européenne de la marque de denim japonaise, sous Magento 2.4. J'ai développé des fonctionnalités de bout en bout et mis en place Apple Pay sur Adyen.",
         freespace: "Application de gestion d'espaces, écrite en PHP.",
         requestify: "Système de gestion des demandes développé avec Laravel.",
         portfolio: "Ce site : React, Tailwind CSS et un assistant IA qui répond aux questions sur mon travail.",
@@ -206,13 +237,16 @@ const translations = {
     },
     skills: {
       title: "Compétences",
-      description: "Les outils que j'utilise au travail et dans mes projets.",
+      description: "Ce que j'utilise au quotidien, par domaine.",
       groups: {
-        commerce: "E-commerce",
         backend: "Backend",
         frontend: "Frontend",
-        tooling: "Bases de données et outils",
+        apis: "API et authentification",
+        data: "Données et performance",
+        devops: "DevOps",
+        languages: "Langues",
       },
+      spoken: ["Arabe, langue maternelle", "Anglais, professionnel (B2)", "Français, intermédiaire (B1)"],
     },
     contact: {
       title: "Contact",
@@ -254,49 +288,61 @@ const translations = {
       subtitle: "Assistant IA qui connaît mon CV",
       greeting: "Posez vos questions sur mon expérience, mes projets ou mes compétences. L'assistant répond à partir de mon CV.",
       suggestions: [
-        "Que fait Mehdi chez Morocommerce ?",
+        "Qu'a fait Mehdi chez Morocommerce ?",
         "Sur quels projets Magento a-t-il travaillé ?",
         "Quelle est sa stack technique ?",
       ],
       placeholder: "Posez une question",
       disclaimer: "Les réponses de l'IA peuvent être inexactes. Consultez le CV pour les détails.",
     },
-    timeline: [
+    experience: [
       {
-        title: "ENSA Fès — Licence en Frameworks Web & Java EE",
-        date: "2025 – 2026, en cours",
-        description:
-          "Frameworks web avancés, Java Enterprise Edition (JEE) et développement de systèmes à grande échelle.",
+        org: "Cartware / Morocommerce, Fès",
+        role: "Développeur Magento 2 (full-stack)",
+        date: "Janv. 2024 – Juil. 2026",
+        points: [
+          "Développement et maintenance de fonctionnalités de bout en bout sur trois plateformes Magento 2.4 (Carhartt WIP B2B, Anita, Edwin Europe) servant plus de 50 000 utilisateurs par mois.",
+          "Temps de chargement des listes produits réduit de 3,2 s à 0,8 s : mapping Elasticsearch, optimisation des requêtes et index MySQL, cache Redis et Varnish.",
+          "Livraison de vitrines Hyvä avec Alpine.js et Tailwind CSS : pages 40 % plus rapides, score Google PageSpeed constamment au-dessus de 95.",
+          "Intégration du SSO Microsoft Entra ID et conception de la couche API REST pour l'intégration des ressources numériques de Carhartt WIP.",
+          "Refactorisation de plus de 50 000 lignes de code legacy et stabilisation des pipelines Docker et CI/CD, avec 45 % de bugs en production en moins.",
+        ],
       },
       {
-        title: "Morocommerce, Fès — Développeur Magento",
-        date: "Déc. 2023 – Aujourd'hui",
-        description:
-          "Développement et maintenance de boutiques Magento Commerce en PHP, JavaScript et TypeScript, y compris des front ends en React.",
+        org: "Cartware / Morocommerce, Fès",
+        role: "Développeur Laravel (stage)",
+        date: "Août – Déc. 2023",
+        points: [
+          "Développement d'une plateforme de gestion interne full-stack avec Laravel 10 et Tailwind CSS, utilisée chaque jour par plus de 25 employés.",
+          "Mise en place d'un contrôle d'accès par rôles et optimisation des requêtes, avec des temps de réponse divisés par deux.",
+        ],
       },
       {
-        title: "Stage",
-        date: "Août 2023 – Déc. 2023",
-        description:
-          "Développement en un mois d'une application RH fonctionnelle en PHP, qui a simplifié les processus RH de l'entreprise.",
-      },
-      {
-        title: "ISTA Adarissa, Fès — Technicien spécialisé en développement digital",
-        date: "2021 – 2023",
-        description:
-          "Diplôme de développement web full-stack : React.js, Laravel, bases de données et autres technologies web.",
-      },
-      {
-        title: "Faculté des Lettres, Fès — Études d'anglais",
-        date: "2020 – 2021",
-        description: "Maîtrise de l'anglais et renforcement des aptitudes de communication.",
-      },
-      {
-        title: "Lycée Ahmed Zaki Alaoui, Fès — Baccalauréat",
-        date: "2020",
-        description: "Formation de base, préparation à l'enseignement supérieur.",
+        org: "Université Sidi Mohamed Ben Abdellah, Fès",
+        role: "Développeur web (stage)",
+        date: "Mars – Avr. 2023",
+        points: [
+          "Développement d'une application RH en PHP / MySQL automatisant les demandes de congé et le suivi de la paie, supprimant 70 % du travail RH manuel.",
+        ],
       },
     ],
+    education: [
+      {
+        org: "ENSA Fès, Université Sidi Mohamed Ben Abdellah",
+        degree: "Diplôme d'Université (Bac+3) Frameworks de développement web & Java EE",
+        note: "Obtenu avec la mention Très Bien. Java EE, Spring Boot, C# / .NET, architecture logicielle.",
+      },
+      {
+        org: "ISTA Adarissa (OFPPT), Fès",
+        degree: "Diplôme de technicien spécialisé en développement digital",
+        note: "Développement web full-stack : PHP, MySQL, JavaScript, POO.",
+      },
+    ],
+    certification: {
+      name: "Adobe Commerce Developer Professional (AD0-E724)",
+      status: "En préparation",
+      note: "Développement backend Magento 2.4.7, Adobe Commerce Cloud, tunnel de commande et ventes.",
+    },
   },
 };
 

@@ -1,10 +1,12 @@
 import { useLanguage } from "../context/LanguageContext";
 
+// Mirrors the Skills section of the resume PDFs in public/
 const SKILL_GROUPS = {
-  commerce: ["Magento 2", "Magento Commerce", "Varnish", "Redis", "RabbitMQ"],
-  backend: ["PHP", "Laravel", "Java EE", "Spring Boot", "Python", "Django"],
-  frontend: ["JavaScript", "TypeScript", "React", "Tailwind CSS", "HTML & CSS", "Bootstrap"],
-  tooling: ["MySQL", "MongoDB", "Docker", "Nginx", "Linux", "Git"],
+  backend: ["PHP 8", "Laravel", "Magento 2 / Adobe Commerce", "Java / Spring Boot", "C# / .NET", "Python"],
+  frontend: ["React", "JavaScript (ES6+)", "Alpine.js", "Tailwind CSS", "Hyvä", "Knockout.js"],
+  apis: ["REST API design", "OAuth2 / JWT", "Microsoft Entra ID SSO", "RBAC", "Amplience", "Adyen"],
+  data: ["MySQL", "Elasticsearch / OpenSearch", "Redis", "Varnish"],
+  devops: ["Docker", "Git / GitHub", "CI/CD", "Nginx", "Linux", "Composer"],
 };
 
 const Skills = () => {
@@ -19,7 +21,7 @@ const Skills = () => {
         </div>
 
         <dl className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
-          {Object.entries(SKILL_GROUPS).map(([group, skills]) => (
+          {Object.entries({ ...SKILL_GROUPS, languages: t("skills.spoken") }).map(([group, skills]) => (
             <div key={group}>
               <dt className="font-display font-bold text-fg text-[1rem] pb-2 border-b border-muted">
                 {t(`skills.groups.${group}`)}

@@ -71,7 +71,7 @@ const projects = [
     hosted: true,
     category: "commercial",
     descriptionKey: "carhartt",
-    tech: ["Magento 2"],
+    tech: ["Magento 2.4", "PHP 8", "REST API", "Entra ID SSO", "Amplience"],
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ const projects = [
     hosted: true,
     category: "commercial",
     descriptionKey: "anita",
-    tech: ["Magento 2"],
+    tech: ["Magento 2.4", "PHP 8"],
   },
   {
     id: 5,
@@ -91,7 +91,7 @@ const projects = [
     hosted: true,
     category: "commercial",
     descriptionKey: "edwin",
-    tech: ["Magento 2"],
+    tech: ["Magento 2.4", "PHP 8", "Adyen"],
   },
   {
     id: 6,

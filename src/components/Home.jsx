@@ -21,6 +21,10 @@ const Home = () => {
           <p className="mt-5 text-muted text-[1.12rem] leading-[1.65] max-w-[34rem]">
             {t("home.description")}
           </p>
+          <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-fg">
+            <span className="w-2 h-2 rounded-full bg-live" aria-hidden="true" />
+            {t("home.availability")}
+          </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Link to="portfolio" href="#portfolio" smooth duration={500} offset={-72} className="btn-primary cursor-pointer">

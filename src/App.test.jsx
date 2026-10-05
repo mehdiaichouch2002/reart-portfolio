@@ -30,6 +30,22 @@ describe("App smoke test", () => {
   });
 });
 
+describe("Experience and education", () => {
+  test("shows the ENSA diploma with honours and no dates on diplomas", () => {
+    render(<App />);
+
+    const diploma = screen.getByText(/university diploma \(bac\+3\)/i).closest("li");
+    expect(within(diploma).getByText(/mention très bien/i)).toBeInTheDocument();
+    expect(within(diploma).queryByText(/20\d\d/)).not.toBeInTheDocument();
+  });
+
+  test("keeps dates on jobs", () => {
+    render(<App />);
+
+    expect(screen.getByText(/jan 2024 – jul 2026/i)).toBeInTheDocument();
+  });
+});
+
 describe("Language switcher", () => {
   test("switches the UI to French", () => {
     render(<App />);

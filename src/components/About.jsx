@@ -1,14 +1,10 @@
 import { useLanguage } from "../context/LanguageContext";
 
-// Titles are stored as "Organisation — role"
-const splitTitle = (title) => {
-  const [org, ...rest] = title.split(" — ");
-  return rest.length ? { org, role: rest.join(" — ") } : { org: title, role: null };
-};
-
 const About = () => {
   const { t } = useLanguage();
-  const timelineEvents = t("timeline");
+  const experience = t("experience");
+  const education = t("education");
+  const certification = t("certification");
 
   return (
     <section name="about" className="border-t border-line">
@@ -18,28 +14,58 @@ const About = () => {
           <p className="mt-4 text-muted leading-relaxed max-w-[22rem]">{t("about.intro")}</p>
         </div>
 
-        <ol className="relative border-l-2 border-line ml-1.5">
-          {timelineEvents.map((item) => {
-            const { org, role } = splitTitle(item.title);
-            const current = /present|in progress|aujourd|en cours/i.test(item.date);
-            return (
-              <li key={item.title} className="relative pl-7 sm:pl-9 pb-10 last:pb-0">
+        <div>
+          {/* Jobs keep their dates; diplomas below don't */}
+          <ol className="relative border-l-2 border-line ml-1.5">
+            {experience.map((job, i) => (
+              <li key={`${job.org}-${job.role}`} className="relative pl-7 sm:pl-9 pb-12 last:pb-0">
                 <span
-                  className={`absolute -left-[7px] top-[0.45rem] w-3 h-3 rotate-45 ${
-                    current ? "bg-accent" : "bg-canvas border-2 border-line"
+                  className={`absolute -left-[7px] top-[0.45rem] w-3 h-3 rounded-full ${
+                    i === 0 ? "bg-accent" : "bg-canvas border-2 border-line"
                   }`}
                   aria-hidden="true"
                 />
-                <p className="font-sans text-sm font-semibold text-muted tabular-nums">{item.date}</p>
+                <p className="text-sm font-semibold text-muted tabular-nums">{job.date}</p>
                 <h3 className="mt-1 font-display text-[1.1rem] font-bold text-fg leading-snug">
-                  {org}
+                  {job.role}
                 </h3>
-                {role && <p className="font-sans font-medium text-accent">{role}</p>}
-                <p className="mt-2 text-fg/80 leading-[1.65] max-w-[40rem]">{item.description}</p>
+                <p className="font-medium text-accent">{job.org}</p>
+                <ul className="mt-3 space-y-2 max-w-[42rem]">
+                  {job.points.map((point) => (
+                    <li key={point} className="relative pl-4 text-fg/80 leading-[1.6]">
+                      <span className="absolute left-0 top-[0.7em] w-1.5 h-px bg-muted" aria-hidden="true" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </li>
-            );
-          })}
-        </ol>
+            ))}
+          </ol>
+
+          <h3 className="mt-16 font-display font-bold text-fg text-[1.35rem]">
+            {t("about.educationTitle")}
+          </h3>
+          <ul className="mt-4">
+            {education.map((item) => (
+              <li key={item.degree} className="py-5 border-t border-line">
+                <p className="font-display font-bold text-fg leading-snug">{item.degree}</p>
+                <p className="font-medium text-accent">{item.org}</p>
+                <p className="mt-1.5 text-fg/80 leading-[1.6] max-w-[42rem]">{item.note}</p>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="mt-10 font-display font-bold text-fg text-[1.35rem]">
+            {t("about.certificationTitle")}
+          </h3>
+          <div className="mt-4 py-5 border-t border-line">
+            <p className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="font-display font-bold text-fg leading-snug">{certification.name}</span>
+              <span className="text-sm font-semibold text-muted">{certification.status}</span>
+            </p>
+            <p className="mt-1.5 text-fg/80 leading-[1.6] max-w-[42rem]">{certification.note}</p>
+          </div>
+        </div>
       </div>
     </section>
   );

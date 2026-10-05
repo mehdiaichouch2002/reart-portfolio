@@ -9,7 +9,7 @@ const isMagento = (p) => p.tech.includes("Magento 2");
 const otherWork = projects
   .filter((p) => p.category !== "commercial")
   .sort((a, b) => isMagento(b) - isMagento(a));
-const INITIAL_VISIBLE = 6;
+const INITIAL_VISIBLE = 4;
 const hostname = (url) => new URL(url).hostname.replace(/^www\./, "");
 
 const TechList = ({ tech }) => (
@@ -33,7 +33,11 @@ const ClientProject = ({ project, t }) => (
       <p className="mt-3 text-fg/80 leading-[1.65] max-w-[32rem]">
         {t(`portfolio.projects.${project.descriptionKey}`)}
       </p>
-      <div className="mt-4">
+      <p className="mt-3 text-sm">
+        <span className="text-muted">{t("portfolio.role")}: </span>
+        <span className="text-fg">{t("portfolio.clientRole")}</span>
+      </p>
+      <div className="mt-3">
         <TechList tech={project.tech} />
       </div>
       <a href={project.href} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-1 font-sans font-semibold text-link">
